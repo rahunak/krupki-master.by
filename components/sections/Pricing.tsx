@@ -25,7 +25,7 @@ export default function Pricing() {
               id="services-heading"
               className="text-3xl md:text-4xl font-bold text-[#EDE8E0] tracking-tight"
             >
-              Услуги и цены
+              Цены на заточку инструмента
             </h2>
           </div>
           <p className="text-[#555560] text-sm leading-relaxed md:text-right max-w-[240px]">
@@ -50,11 +50,10 @@ export default function Pricing() {
               </div>
               <div className="flex items-baseline gap-1.5">
                 <span
-                  className={`font-mono font-bold leading-none ${
-                    item.unit
+                  className={`font-mono font-bold leading-none ${item.unit
                       ? "text-[#D97706] text-2xl"
                       : "text-[#555560] text-base font-sans font-semibold"
-                  }`}
+                    }`}
                 >
                   {item.price}
                 </span>

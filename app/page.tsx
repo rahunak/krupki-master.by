@@ -13,6 +13,23 @@ export default function Home() {
 
       <main>
         <Hero />
+
+        <h2>Что мы точим</h2>
+        <div className="grid">
+          <article>
+            <h3>Заточка ножей</h3>
+            <p>Кухонные, охотничьи, туристические ножи, ножи для мясорубок.</p>
+          </article>
+          <article>
+            <h3>Заточка цепей бензопил</h3>
+            <p>Цепи для бензопил (Stihl, Husqvarna, Partner и др.).</p>
+          </article>
+          <article>
+            <h3>Садовый и столярный инструмент</h3>
+            <p>Топоры, секаторы, стамески, ножи рубанка, ножницы.</p>
+          </article>
+        </div>
+
         <HowItWorks />
         <Pricing />
         <OrderForm />

@@ -37,7 +37,7 @@ export default function HowItWorks() {
             id="delivery-heading"
             className="text-3xl md:text-4xl font-bold text-[#EDE8E0] tracking-tight"
           >
-            Как работает доставка
+            Как заказать заточку с доставкой по Беларуси
           </h2>
         </div>
 

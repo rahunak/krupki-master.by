@@ -36,19 +36,13 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto px-5 w-full py-24 md:py-28 lg:py-32">
         <div className="max-w-[680px]">
           <SectionLabel>Мастерская · Крупки, Минская обл.</SectionLabel>
-
           <h1
             id="hero-heading"
             className="text-[2.6rem] md:text-5xl lg:text-[3.4rem] font-extrabold text-[#EDE8E0] leading-[1.07] tracking-[-0.02em] mb-6"
-          >
-            Профессиональная заточка ножей и инструмента в Крупках{" "}
-            <span className="text-[#D97706]">с доставкой по Беларуси</span>
-          </h1>
+          >Профессиональная ручная заточка ножей, цепей и режущего инструмента</h1>
+          <p className="text-[17px] md:text-lg text-[#6E7886] leading-relaxed mb-10 max-w-lg">Точим кухонные, охотничьи ножи, цепи бензопил, столярный и садовый инструмент. Доставка по всей Беларуси.</p>
 
-          <p className="text-[17px] md:text-lg text-[#6E7886] leading-relaxed mb-10 max-w-lg">
-            Прецизионная ручная заточка под точным углом. Вернём остроту ножам, пилам,
-            садовому инструменту — отправьте Белпочтой из любого города страны.
-          </p>
+
 
           <div className="flex flex-col sm:flex-row gap-3 mb-14">
             <a
