@@ -216,13 +216,13 @@ curl http://localhost:3001/orders
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:3001
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
 **Для production** замените на облачный Supabase:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-real-key
+SUPABASE_PUBLISHABLE_KEY=your-real-key
 ```
 
 ---

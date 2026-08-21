@@ -16,7 +16,7 @@ npm install
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your-project-url.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_PUBLISHABLE_KEY=your-anon-key
 ```
 
 **Важно:** Получите credentials из [Supabase Dashboard](https://supabase.com) → Settings → API
@@ -134,7 +134,7 @@ npm run lint         # ESLint проверка
 1. Подключите GitHub репозиторий к Vercel
 2. Добавьте Environment Variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_PUBLISHABLE_KEY`
 3. Deploy!
 
 ### Docker
@@ -175,7 +175,7 @@ pm2 start npm --name "krupki-master" -- start
 
 **Решение:**
 1. Создайте `.env.local`
-2. Добавьте `NEXT_PUBLIC_SUPABASE_URL` и `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+2. Добавьте `NEXT_PUBLIC_SUPABASE_URL` и `SUPABASE_PUBLISHABLE_KEY`
 3. Перезапустите dev сервер
 
 ### Форма не отправляется

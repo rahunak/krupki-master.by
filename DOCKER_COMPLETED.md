@@ -104,7 +104,7 @@ curl -X POST http://localhost:3001/orders \
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:3001
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
 ---

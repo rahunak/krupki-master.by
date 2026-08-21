@@ -29,7 +29,7 @@
 ```env
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
 **Важно:** 
@@ -194,7 +194,7 @@ CREATE POLICY "Authenticated users can delete orders"
 3. Добавьте Environment Variables:
    ```
    NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+   SUPABASE_PUBLISHABLE_KEY=eyJ...
    ```
 4. Deploy!
 

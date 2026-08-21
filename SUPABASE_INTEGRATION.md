@@ -62,7 +62,7 @@ export interface Order {
 ✅ Создан `.env.local` с шаблоном:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your-project-url.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_PUBLISHABLE_KEY=your-anon-key
 ```
 
 ### 6. Документация
