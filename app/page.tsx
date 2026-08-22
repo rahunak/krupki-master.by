@@ -14,7 +14,7 @@ export default function Home() {
       <main>
         <Hero />
 
-        <section id="services" className="py-20 px-5 max-w-6xl mx-auto">
+        <section id="services" className="py-10 px-5 max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Что мы точим</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <article className="p-6 border border-white/[0.08] rounded-lg bg-white/[0.02]">
@@ -27,7 +27,7 @@ export default function Home() {
             </article>
             <article className="p-6 border border-white/[0.08] rounded-lg bg-white/[0.02]">
               <h3 className="text-xl font-semibold mb-3 text-[#F59E0B]">Садовый и столярный инструмент</h3>
-              <p className="text-[#7A8494]">Топоры, секаторы, стамески, ножи рубанка, ножницы.</p>
+              <p className="text-[#7A8494]">Топоры, секаторы, стамески, ножницы, ножи рубанка.</p>
             </article>
           </div>
         </section>
