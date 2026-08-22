@@ -1,16 +1,23 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"], display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"], display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#0C0C0E",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1, // Prevents zoom on iOS inputs, improves INP
+};
 
 const SITE_URL = "https://krupki-master.by";
 const SITE_NAME = "Крупки Мастер";
@@ -68,7 +75,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og_image.png`,
         width: 1200,
         height: 630,
         alt: "Ручная заточка ножей и инструмента Крупки Мастер",
@@ -79,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ручная заточка ножей и цепей | Доставка по Беларуси",
     description: "Профессиональная заточка ножей, цепей и инструмента. Доставка по РБ.",
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: [`${SITE_URL}/og_image.png`],
   },
   robots: {
     index: true,
@@ -109,21 +116,21 @@ const jsonLd = {
       name: SITE_NAME,
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.svg`,
-      image: `${SITE_URL}/og-image.jpg`,
+      image: `${SITE_URL}/og_image.png`,
       telephone: PHONE_NUMBER,
       priceRange: "5-20 BYN",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "ул. Ленина, 1", // Заменить на реальный адрес в Крупках
+        streetAddress: "д.Прошика ул.Молодежная д.1",
         addressLocality: "Крупки",
         addressRegion: "Минская область",
-        postalCode: "222120",
+        postalCode: "222033",
         addressCountry: "BY",
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 54.3167,
-        longitude: 29.1333,
+        latitude: 54.4843,
+        longitude: 29.1503
       },
       // Покрытие всей РБ благодаря доставке
       areaServed: [
@@ -202,81 +209,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="alternate" hrefLang="ru-BY" href={SITE_URL} />
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "LocalBusiness",
-                  "@id": "https://krupki-master.by/#business",
-                  name: "Krupki Master",
-                  image: "https://krupki-master.by/og-image.jpg",
-                  url: "https://krupki-master.by",
-                  telephone: "+375333123386",
-                  priceRange: "5-20 BYN",
-                  address: {
-                    "@type": "PostalAddress",
-                    streetAddress: "ул. Примерная, 1",
-                    addressLocality: "Крупки",
-                    addressRegion: "Минская область",
-                    postalCode: "222120",
-                    addressCountry: "BY",
-                  },
-                  geo: {
-                    "@type": "GeoCoordinates",
-                    latitude: 54.3167,
-                    longitude: 29.1333,
-                  },
-                  openingHoursSpecification: [
-                    {
-                      "@type": "OpeningHoursSpecification",
-                      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                      opens: "09:00",
-                      closes: "18:00",
-                    },
-                    {
-                      "@type": "OpeningHoursSpecification",
-                      dayOfWeek: "Saturday",
-                      opens: "10:00",
-                      closes: "15:00",
-                    },
-                  ],
-                  sameAs: [],
-                  hasOfferCatalog: {
-                    "@type": "OfferCatalog",
-                    name: "Услуги заточки",
-                    itemListElement: [
-                      {
-                        "@type": "Offer",
-                        itemOffered: {
-                          "@type": "Service",
-                          name: "Заточка кухонных ножей",
-                          description: "Ручная профессиональная заточка кухонных ножей",
-                        },
-                        price: "10",
-                        priceCurrency: "BYN",
-                        availability: "https://schema.org/InStock",
-                      },
-                      {
-                        "@type": "Offer",
-                        itemOffered: {
-                          "@type": "Service",
-                          name: "Заточка цепей бензопил",
-                          description: "Заточка цепей бензопил",
-                        },
-                        price: "9",
-                        priceCurrency: "BYN",
-                        availability: "https://schema.org/InStock",
-                      },
-                    ],
-                  },
-                },
-              ],
-            }),
-          }}
-        />
       </head>
       <body>{children}</body>
     </html>
