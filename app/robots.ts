@@ -6,12 +6,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/"],
+        disallow: ['/_next/', '/api/', '/admin/'],
       },
       {
         userAgent: "Yandex",
         allow: "/",
-        disallow: ["/api/", "/admin/"],
+        disallow: ['/_next/', '/api/', '/admin/'],
       },
       {
         userAgent: "GPTBot",
