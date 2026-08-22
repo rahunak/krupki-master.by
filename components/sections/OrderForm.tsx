@@ -47,6 +47,30 @@ export default function OrderForm() {
         throw supabaseError;
       }
 
+      // Отправляем уведомление в Telegram
+      if (data && data[0]) {
+        try {
+          await fetch("/api/telegram/notify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              orderId: data[0].id,
+              name: form.name.trim() || undefined,
+              phone: form.phone.trim(),
+              city: form.city.trim() || undefined,
+              description: form.desc.trim() || undefined,
+              createdAt: data[0].created_at,
+            }),
+          });
+          // Не блокируем пользователя если Telegram недоступен
+        } catch (telegramError) {
+          console.error("Telegram notification failed:", telegramError);
+          // Продолжаем работу, заказ уже сохранён
+        }
+      }
+
       setSubmitted(true);
       setForm({ name: "", phone: "", city: "", desc: "" });
     } catch (err) {
