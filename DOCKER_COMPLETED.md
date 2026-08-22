@@ -52,7 +52,6 @@ Table "public.orders"
  name           | character varying(255)   |          | 
  city           | character varying(255)   |          | 
  description    | text                     |          | 
- contact_method | character varying(20)    |          | 
  created_at     | timestamp with time zone | not null | now()
  updated_at     | timestamp with time zone | not null | now()
 ```
@@ -61,9 +60,6 @@ Table "public.orders"
 - ✅ `orders_pkey` — PRIMARY KEY на `id`
 - ✅ `idx_orders_created_at` — для сортировки по дате
 - ✅ `idx_orders_phone` — для поиска по телефону
-
-### Constraints
-- ✅ `contact_method` CHECK — только: telegram, viber, phone, email
 
 ### RLS Policies
 - ✅ **Anyone can insert orders** — публичная форма
@@ -92,7 +88,6 @@ curl -X POST http://localhost:3001/orders \
     "name": "Тест",
     "city": "Минск",
     "description": "3 ножа",
-    "contact_method": "telegram"
   }'
 ```
 

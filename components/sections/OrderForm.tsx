@@ -4,14 +4,6 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import SectionLabel from "./SectionLabel";
 import { supabase } from "@/lib/supabase";
-import type { ContactMethod } from "@/lib/types";
-
-const CONTACT_METHODS: { id: ContactMethod; label: string; icon: string }[] = [
-  { id: "telegram", label: "Telegram", icon: "TG" },
-  { id: "viber", label: "Viber", icon: "VB" },
-  { id: "phone", label: "Звонок", icon: "☎" },
-  { id: "email", label: "Email", icon: "✉" },
-];
 
 const PERKS = [
   "Фото до и после заточки",
@@ -21,7 +13,6 @@ const PERKS = [
 ];
 
 export default function OrderForm() {
-  const [contact, setContact] = useState<ContactMethod>("telegram");
   const [form, setForm] = useState({ name: "", phone: "", city: "", desc: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,8 +38,7 @@ export default function OrderForm() {
             phone: form.phone.trim(),
             name: form.name.trim() || null,
             city: form.city.trim() || null,
-            description: form.desc.trim() || null,
-            contact_method: contact,
+            description: form.desc.trim() || null
           },
         ])
         .select();
@@ -216,34 +206,6 @@ export default function OrderForm() {
                     placeholder="Опишите инструмент: вид, количество, состояние. Например: 3 кухонных ножа, сильно затуплены."
                     className={`${inputBase} resize-none`}
                   />
-                </div>
-
-                {/* Contact method */}
-                <div>
-                  <label id="contact-group-label" className={labelBase}>
-                    Способ связи
-                  </label>
-                  <div
-                    role="group"
-                    aria-labelledby="contact-group-label"
-                    className="grid grid-cols-3 gap-2"
-                  >
-                    {CONTACT_METHODS.map((m) => (
-                      <button
-                        key={m.id}
-                        type="button"
-                        onClick={() => setContact(m.id)}
-                        aria-pressed={contact === m.id}
-                        className={`py-3 text-[13px] font-semibold rounded-[2px] border transition-all duration-150 ${
-                          contact === m.id
-                            ? "bg-[#D97706] border-[#D97706] text-[#0A0A0B]"
-                            : "bg-transparent border-white/[0.09] text-[#555560] hover:border-white/20 hover:text-[#94A3B8]"
-                        }`}
-                      >
-                        {m.label}
-                      </button>
-                    ))}
-                  </div>
                 </div>
 
                 {/* Submit */}

@@ -78,7 +78,6 @@ site_nextjs/
 - `name` (string, optional) — имя клиента
 - `city` (string, optional) — город отправки
 - `description` (text, optional) — описание инструмента
-- `contact_method` (enum, optional) — способ связи: `telegram`, `viber`, `phone`, `email`
 - `created_at` (timestamp) — auto
 - `updated_at` (timestamp) — auto
 

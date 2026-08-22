@@ -60,17 +60,8 @@ SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 | name | varchar(255) | - | ✅ | - |
 | city | varchar(255) | - | ✅ | - |
 | description | text | - | ✅ | - |
-| contact_method | varchar(20) | - | ✅ | - |
 | created_at | timestamptz | now() | ❌ | - |
 | updated_at | timestamptz | now() | ❌ | - |
-
-4. Добавьте constraint для `contact_method`:
-   ```sql
-   ALTER TABLE orders 
-   ADD CONSTRAINT orders_contact_method_check 
-   CHECK (contact_method IN ('telegram', 'viber', 'phone', 'email'));
-   ```
-
 ---
 
 ## 5. Настройка Row Level Security (RLS)
@@ -117,8 +108,7 @@ CREATE POLICY "Authenticated users can delete orders"
      "phone": "+375291234567",
      "name": "Тестовый заказ",
      "city": "Минск",
-     "description": "3 кухонных ножа",
-     "contact_method": "telegram"
+     "description": "3 кухонных ножа"
    }
    ```
 4. Если запись создалась — всё работает!
@@ -145,7 +135,6 @@ CREATE POLICY "Authenticated users can delete orders"
 | `name` | string | ❌ | Имя клиента |
 | `city` | string | ❌ | Город отправки |
 | `description` | text | ❌ | Описание инструмента для заточки |
-| `contact_method` | enum | ❌ | Способ связи: `telegram`, `viber`, `phone`, `email` |
 | `created_at` | timestamp | ✅ | Дата создания заказа (auto) |
 | `updated_at` | timestamp | ✅ | Дата обновления (auto) |
 
@@ -158,7 +147,6 @@ CREATE POLICY "Authenticated users can delete orders"
   "name": "Иван Петров",
   "city": "Минск",
   "description": "3 кухонных ножа, сильно затуплены",
-  "contact_method": "telegram",
   "created_at": "2026-08-20T11:30:47.275Z",
   "updated_at": "2026-08-20T11:30:47.275Z"
 }
@@ -173,7 +161,6 @@ CREATE POLICY "Authenticated users can delete orders"
 1. **Row Level Security (RLS)** включен
 2. **Public insert** — любой может создать заказ через форму
 3. **Authenticated access** — просмотр/изменение только для авторизованных админов
-4. **Validation** — `contact_method` ограничен 4 значениями
 5. **Indexes** — быстрый поиск по `created_at` и `phone`
 
 ### 🔒 Рекомендации:

@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS orders (
   name VARCHAR(255),
   city VARCHAR(255),
   description TEXT,
-  contact_method VARCHAR(20) CHECK (contact_method IN ('telegram', 'viber', 'phone', 'email')),
 
   -- Metadata
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
@@ -72,4 +71,3 @@ COMMENT ON COLUMN orders.phone IS 'Customer phone number (required)';
 COMMENT ON COLUMN orders.name IS 'Customer name (optional)';
 COMMENT ON COLUMN orders.city IS 'City where the item will be sent from (optional)';
 COMMENT ON COLUMN orders.description IS 'Description of items to sharpen (optional)';
-COMMENT ON COLUMN orders.contact_method IS 'Preferred contact method: telegram, viber, phone, or email';

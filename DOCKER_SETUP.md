@@ -110,7 +110,6 @@ curl -X POST http://localhost:3001/orders \
     "name": "Тест",
     "city": "Минск",
     "description": "3 ножа",
-    "contact_method": "telegram"
   }'
 ```
 

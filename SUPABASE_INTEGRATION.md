@@ -14,7 +14,7 @@
 ### 2. TypeScript Types
 ✅ Создан `/lib/types.ts` с типами для БД:
 ```typescript
-export type ContactMethod = "telegram" | "viber" | "phone" | "email";
+ 
 
 export interface Order {
   id?: string;
@@ -22,7 +22,6 @@ export interface Order {
   name?: string | null;       // необязательное
   city?: string | null;       // необязательное
   description?: string | null; // необязательное
-  contact_method?: ContactMethod | null; // необязательное
   created_at?: string;
 }
 ```
@@ -37,7 +36,6 @@ export interface Order {
   - Public INSERT (форма доступна всем)
   - Authenticated SELECT/UPDATE/DELETE (только админы)
 - Auto-update trigger для `updated_at`
-- CHECK constraint для `contact_method` enum
 
 ### 4. Обновлена форма OrderForm.tsx
 
@@ -48,7 +46,6 @@ export interface Order {
 - ✅ Loading state (spinner при отправке)
 - ✅ Error handling (показ ошибок)
 - ✅ Success state (форма очищается после успешной отправки)
-- ✅ Обновлен `contact_method` enum: добавлен `email`
 - ✅ Визуальное обозначение обязательного поля (*)
 
 **Изменены поля:**
@@ -56,7 +53,6 @@ export interface Order {
 - `name` — необязательное (removed required)
 - `city` — необязательное (removed required)
 - `description` — необязательное (removed required)
-- `contact_method` — необязательное (enum: telegram/viber/phone/email)
 
 ### 5. Environment Variables
 ✅ Создан `.env.local` с шаблоном:
@@ -94,8 +90,6 @@ INSERT запрос от клиента
        ↓
 RLS Policy: "Anyone can insert orders" ✅
        ↓
-Validation: contact_method CHECK constraint
-       ↓
 Auto-генерация: id (UUID), created_at, updated_at
        ↓
 Запись сохранена в PostgreSQL
@@ -112,7 +106,6 @@ Auto-генерация: id (UUID), created_at, updated_at
 - Authenticated могут SELECT/UPDATE/DELETE (админ-панель)
 
 ✅ **Validation на уровне БД**
-- `contact_method` ограничен 4 значениями
 - `phone` NOT NULL constraint
 
 ✅ **Environment Variables**
@@ -155,7 +148,6 @@ Auto-генерация: id (UUID), created_at, updated_at
 ```json
 {
   "phone": "+375291234567",
-  "contact_method": "telegram"
 }
 ```
 
@@ -166,7 +158,6 @@ Auto-генерация: id (UUID), created_at, updated_at
   "name": "Иван Петров",
   "city": "Минск",
   "description": "3 кухонных ножа, сильно затуплены",
-  "contact_method": "telegram"
 }
 ```
 
