@@ -101,7 +101,7 @@ export const metadata: Metadata = {
   },
   verification: {
     // google: "your-google-verification-code",
-    yandex: "6c961a7ea994387b",
+    yandex: "6c961a7ea994387b",//Почему то не сработал, пришлось загружать шаблон яндекса через GTM
   },
   category: "services",
 };
