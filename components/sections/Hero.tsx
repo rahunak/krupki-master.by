@@ -11,7 +11,7 @@ export default function Hero() {
       {/* Background layers */}
       <div className="absolute inset-0 bg-[#0C0C0E]">
         <Image
-          src="https://images.unsplash.com/photo-1593618998160-e34014e67546?w=1800&h=1100&fit=crop&auto=format"
+          src="/hero.webp"
           alt="Кузнечные инструменты и нож на тёмном фоне"
           fill
           priority
