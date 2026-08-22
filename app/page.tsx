@@ -6,6 +6,7 @@ import OrderForm from "@/components/sections/OrderForm";
 import Footer from "@/components/footer/Footer";
 import MobileCTA from "@/components/sections/MobileCTA";
 
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0C0C0E] text-[#EDE8E0] antialiased overflow-x-hidden">

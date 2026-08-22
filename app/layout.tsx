@@ -4,6 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL, SITE_NAME, PHONE_NUMBER, POSTAL_CODE } from "@/data/contacts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,10 +22,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1, // Prevents zoom on iOS inputs, improves INP
 };
-
-const SITE_URL = "https://krupki-master.by";
-const SITE_NAME = "Крупки Мастер";
-const PHONE_NUMBER = "+375333123386";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -127,7 +124,7 @@ const jsonLd = {
         streetAddress: "д.Прошика ул.Молодежная д.1",
         addressLocality: "Крупки",
         addressRegion: "Минская область",
-        postalCode: "222033",
+        postalCode: POSTAL_CODE,
         addressCountry: "BY",
       },
       geo: {
