@@ -39,7 +39,7 @@ export default function Footer() {
               </a>
               <p className="flex items-center gap-2.5 text-[13px] text-[#6E7886]">
                 <FileText size={13} className="text-[#D97706] shrink-0" aria-hidden="true" />
-                УНП:&nbsp;123456789
+                УНП:&nbsp;KA7633473
               </p>
             </address>
           </div>
@@ -91,7 +91,7 @@ export default function Footer() {
           <p className="text-[#2A2A2E] text-xs">
             © 2024 Krupki Master · Заточка ножей Крупки · Доставка по Беларуси
           </p>
-          <p className="text-[#2A2A2E] text-xs">Индивидуальный предприниматель · ИП</p>
+          <p className="text-[#2A2A2E] text-xs">УНП:&nbsp;KA7633473</p>
         </div>
       </div>
     </footer>
