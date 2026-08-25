@@ -1,8 +1,8 @@
 import SectionLabel from "./SectionLabel";
 
 const PRICES = [
-  { name: "Кухонный нож", note: "ручная заточка", price: "от 10", unit: "BYN" },
-  { name: "Охотничий нож", note: "восстановление геометрии", price: "от 15", unit: "BYN" },
+  { name: "Кухонный нож", note: "ручная заточка", price: "от 4", unit: "BYN" },
+  { name: "Охотничий нож", note: "восстановление геометрии", price: "от 12", unit: "BYN" },
   { name: "Цепь бензопилы", note: "каждый зуб вручную", price: "от 9", unit: "BYN" },
   { name: "Нож мясорубки", note: "нож + решётка", price: "от 9", unit: "BYN" },
   { name: "Ножницы", note: "бытовые / портновские", price: "от 5", unit: "BYN" },
@@ -51,8 +51,8 @@ export default function Pricing() {
               <div className="flex items-baseline gap-1.5">
                 <span
                   className={`font-mono font-bold leading-none ${item.unit
-                      ? "text-[#D97706] text-2xl"
-                      : "text-[#555560] text-base font-sans font-semibold"
+                    ? "text-[#D97706] text-2xl"
+                    : "text-[#555560] text-base font-sans font-semibold"
                     }`}
                 >
                   {item.price}
