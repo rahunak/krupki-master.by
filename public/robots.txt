@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Verification file
+Disallow: /09da9aae23bde0aa22847fbe03092441ce9c98f5.html
+
+Sitemap: https://krupki-master.by/sitemap.xml
