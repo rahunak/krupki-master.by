@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const POSTS = [
   {
@@ -44,6 +46,7 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   return (
     <div className="min-h-screen bg-[#0C0C0E] text-[#EDE8E0] antialiased">
+      <Header />
       <main className="pt-28 pb-24 max-w-3xl mx-auto px-5">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
           Блог о заточке
@@ -69,6 +72,7 @@ export default function BlogIndex() {
           ))}
         </ul>
       </main>
+      <Footer />
     </div>
   );
 }

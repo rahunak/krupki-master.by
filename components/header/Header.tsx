@@ -5,11 +5,16 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Logo from "./Logo";
 
+/**
+ * Якоря ведут на главную (/#services) — Header один на весь сайт, и со страниц
+ * блога хеш вида #services без пути не сработал бы. На главной хеш-ссылки
+ * работают штатно (smooth scroll из layout.tsx).
+ */
 const NAV_LINKS = [
-  { href: "#services", label: "Услуги" },
+  { href: "/#services", label: "Услуги" },
   { href: "/blog", label: "Блог" },
-  { href: "#delivery", label: "Доставка" },
-  { href: "#contacts", label: "Контакты" },
+  { href: "/#delivery", label: "Доставка" },
+  { href: "/#contacts", label: "Контакты" },
 ];
 
 export default function Header() {
@@ -56,12 +61,12 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#order"
+          <Link
+            href="/#order"
             className="hidden md:inline-flex items-center gap-1.5 bg-[#D97706] text-[#0A0A0B] font-bold text-[13px] px-5 py-2.5 rounded-[2px] hover:bg-[#F59E0B] active:scale-[0.98] transition-all duration-150"
           >
             Оставить заявку
-          </a>
+          </Link>
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden w-9 h-9 flex items-center justify-center text-[#7A8494] hover:text-[#EDE8E0] transition-colors"
@@ -101,13 +106,13 @@ export default function Header() {
               )
             ))}
           </nav>
-          <a
-            href="#order"
+          <Link
+            href="/#order"
             onClick={() => setMenuOpen(false)}
             className="flex items-center justify-center gap-2 mt-5 w-full bg-[#D97706] text-[#0A0A0B] font-bold text-[15px] py-4 rounded-[2px]"
           >
             Оставить заявку
-          </a>
+          </Link>
         </div>
       )}
     </header>

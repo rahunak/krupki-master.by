@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function BladeMark() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -8,8 +10,13 @@ function BladeMark() {
 }
 
 export default function Logo() {
+  // Логотип всегда ведёт на главную (не якорь: со страниц блога # скроллит в никуда)
   return (
-    <a href="#" className="flex items-center gap-2 shrink-0 select-none group">
+    <Link
+      href="/"
+      aria-label="Крупки Мастер — на главную"
+      className="flex items-center gap-2 shrink-0 select-none group"
+    >
       <BladeMark />
       <span className="font-mono font-bold tracking-[0.22em] text-[11px] uppercase text-[#D97706]">
         Krupki
@@ -18,6 +25,6 @@ export default function Logo() {
       <span className="font-semibold tracking-wide text-sm text-[#C8C2BA] group-hover:text-[#EDE8E0] transition-colors duration-200">
         Master
       </span>
-    </a>
+    </Link>
   );
 }
