@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, SITE_NAME, PHONE_NUMBER, POSTAL_CODE } from "@/data/contacts";
+import YandexMetrika from "@/components/YandexMetrika";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -231,6 +232,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
 
         {children}
+
+        {/* Яндекс.Метрика — поведенческие факторы Яндекса (часть формулы ранжирования).
+            Загрузка отложенная (после первого взаимодействия / 3.5 с) — не бьёт по TBT.
+            Номер счётчика вписывается в components/YandexMetrika.tsx. */}
+        {isProduction && <YandexMetrika enabled={isProduction} />}
 
         {isProduction && (
           <>
