@@ -1,9 +1,26 @@
 {
   "mcpServers": {
     "graft": {
-      "command": "graft",
+      "command": "npx",
       "args": [
+        "-y",
+        "@nanonets/graft",
         "mcp"
+      ]
+    },
+    "google-seo-mcp": {
+      "command": "/home/rahunak/.local/bin/google-seo-mcp",
+      "env": {
+        "GOOGLE_SEO_SERVICE_ACCOUNT_FILE": "/home/rahunak/Documents/eugene/AI_agents/google-seo-mcp-sa.json"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome"
       ]
     }
   }
