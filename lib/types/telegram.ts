@@ -24,5 +24,7 @@ export interface OrderNotification {
   phone: string;
   city?: string;
   description?: string;
+  /** Канал связи, который выбрал клиент в форме: viber (по умолчанию) | call */
+  contactMethod?: "viber" | "call";
   createdAt: string;
 }

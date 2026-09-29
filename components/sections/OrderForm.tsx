@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone, MessageCircle } from "lucide-react";
 import SectionLabel from "./SectionLabel";
 import { supabase } from "@/lib/supabase";
 
@@ -12,8 +12,12 @@ const PERKS = [
   "Белпочта и Европочта по всей Беларуси",
 ];
 
+/** Основные каналы связи: Viber и звонок (по запросу заказчика) */
+type ContactMethod = "viber" | "call";
+
 export default function OrderForm() {
-  const [form, setForm] = useState({ name: "", phone: "", city: "", desc: "" });
+  const [form, setForm] = useState({ phone: "" });
+  const [contactMethod, setContactMethod] = useState<ContactMethod>("viber");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,60 +26,38 @@ export default function OrderForm() {
     e.preventDefault();
     setError(null);
 
-    // Валидация: телефон обязателен
-    if (!form.phone.trim()) {
-      setError("Номер телефона обязателен");
+    // Валидация: телефон обязателен, минимум 9 цифр (номер РБ без кода)
+    const digits = form.phone.replace(/\D/g, "");
+    if (digits.length < 9) {
+      setError("Укажите номер телефона — иначе мастер не сможет связаться");
       return;
     }
 
     setLoading(true);
 
     try {
-      const { data, error: supabaseError } = await supabase
-        .from("orders")
-        .insert([
-          {
-            phone: form.phone.trim(),
-            name: form.name.trim() || null,
-            city: form.city.trim() || null,
-            description: form.desc.trim() || null
-          },
-        ])
-        .select();
+      // Заявка сохраняется в Supabase и уходит уведомлением в Telegram-канал
+      // (сервер сам подставит TELEGRAM_CHANNEL_ID). Имя/город/описание убраны:
+      // единственный обязательный контакт — телефон, детали мастер уточнит сам.
+      const res = await fetch("/api/telegram/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone: form.phone.trim(),
+          contactMethod,
+        }),
+      });
 
-      if (supabaseError) {
-        throw supabaseError;
-      }
-
-      // Отправляем уведомление в Telegram
-      if (data && data[0]) {
-        try {
-          await fetch("/api/telegram/notify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              orderId: data[0].id,
-              name: form.name.trim() || undefined,
-              phone: form.phone.trim(),
-              city: form.city.trim() || undefined,
-              description: form.desc.trim() || undefined,
-              createdAt: data[0].created_at,
-            }),
-          });
-          // Не блокируем пользователя если Telegram недоступен
-        } catch (telegramError) {
-          console.error("Telegram notification failed:", telegramError);
-          // Продолжаем работу, заказ уже сохранён
-        }
+      if (!res.ok) {
+        throw new Error("Failed to submit");
       }
 
       setSubmitted(true);
-      setForm({ name: "", phone: "", city: "", desc: "" });
+      setForm({ phone: "" });
+      setContactMethod("viber");
     } catch (err) {
       console.error("Error submitting order:", err);
-      setError("Произошла ошибка при отправке заявки. Попробуйте ещё раз.");
+      setError("Произошла ошибка при отправке заявки. Попробуйте ещё раз или позвоните нам.");
     } finally {
       setLoading(false);
     }
@@ -107,9 +89,10 @@ export default function OrderForm() {
               Оформить заявку
             </h2>
             <p className="text-[#555560] text-sm leading-relaxed mb-8">
-              Заполните форму — мастер свяжется с вами в течение{" "}
-              <strong className="text-[#C8C2BA] font-semibold">2 часов</strong> для уточнения
-              деталей и согласования стоимости. Без предоплаты до оценки.
+              Оставьте только номер телефона — мастер свяжется с вами в{" "}
+              <strong className="text-[#C8C2BA] font-semibold">Viber</strong> или перезвонит
+              в течение <strong className="text-[#C8C2BA] font-semibold">2 часов</strong>,
+              уточнит детали и назовёт цену. Без предоплаты до оценки.
             </p>
 
             <ul className="space-y-4 mb-10">
@@ -159,7 +142,8 @@ export default function OrderForm() {
                 <button
                   onClick={() => {
                     setSubmitted(false);
-                    setForm({ name: "", phone: "", city: "", desc: "" });
+                    setForm({ phone: "" });
+                    setContactMethod("viber");
                   }}
                   className="mt-8 text-[#D97706] text-sm hover:text-[#F59E0B] transition-colors underline underline-offset-2"
                 >
@@ -168,69 +152,68 @@ export default function OrderForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                {/* Name + Phone */}
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="f-name" className={labelBase}>
-                      Имя
-                    </label>
-                    <input
-                      id="f-name"
-                      type="text"
-                      autoComplete="given-name"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Ваше имя"
-                      className={inputBase}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="f-phone" className={labelBase}>
-                      Телефон <span className="text-[#D97706]">*</span>
-                    </label>
-                    <input
-                      id="f-phone"
-                      type="tel"
-                      required
-                      autoComplete="tel"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      placeholder="+375 (XX) XXX-XX-XX"
-                      className={inputBase}
-                    />
-                  </div>
-                </div>
-
-                {/* City */}
+                {/* Только телефон — остальное мастер уточнит при связи */}
                 <div>
-                  <label htmlFor="f-city" className={labelBase}>
-                    Город отправки
+                  <label htmlFor="f-phone" className={labelBase}>
+                    Телефон <span className="text-[#D97706]">*</span>
                   </label>
                   <input
-                    id="f-city"
-                    type="text"
-                    autoComplete="address-level2"
-                    value={form.city}
-                    onChange={(e) => setForm({ ...form, city: e.target.value })}
-                    placeholder="Минск, Витебск, Гомель..."
+                    id="f-phone"
+                    type="tel"
+                    required
+                    autoComplete="tel"
+                    inputMode="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ phone: e.target.value })}
+                    placeholder="+375 (XX) XXX-XX-XX"
                     className={inputBase}
                   />
                 </div>
 
-                {/* What to sharpen */}
-                <div>
-                  <label htmlFor="f-desc" className={labelBase}>
-                    Что заточить
-                  </label>
-                  <textarea
-                    id="f-desc"
-                    rows={4}
-                    value={form.desc}
-                    onChange={(e) => setForm({ ...form, desc: e.target.value })}
-                    placeholder="Опишите инструмент: вид, количество, состояние. Например: 3 кухонных ножа, сильно затуплены."
-                    className={`${inputBase} resize-none`}
-                  />
-                </div>
+                {/* Канал связи: Viber (по умолчанию) или звонок */}
+                <fieldset>
+                  <legend className={labelBase}>
+                    Как связаться
+                  </legend>
+                  <div className="grid grid-cols-2 gap-3">
+                    <label
+                      className={`flex items-center justify-center gap-2 cursor-pointer border rounded-[2px] px-4 py-3.5 text-sm transition-all duration-150 ${
+                        contactMethod === "viber"
+                          ? "border-[#D97706] bg-[#D97706]/[0.08] text-[#EDE8E0]"
+                          : "border-white/[0.09] bg-[#080809] text-[#555560] hover:border-white/20"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="contact-method"
+                        value="viber"
+                        checked={contactMethod === "viber"}
+                        onChange={() => setContactMethod("viber")}
+                        className="sr-only"
+                      />
+                      <MessageCircle size={16} className={contactMethod === "viber" ? "text-[#D97706]" : "text-[#555560]"} aria-hidden="true" />
+                      Viber
+                    </label>
+                    <label
+                      className={`flex items-center justify-center gap-2 cursor-pointer border rounded-[2px] px-4 py-3.5 text-sm transition-all duration-150 ${
+                        contactMethod === "call"
+                          ? "border-[#D97706] bg-[#D97706]/[0.08] text-[#EDE8E0]"
+                          : "border-white/[0.09] bg-[#080809] text-[#555560] hover:border-white/20"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="contact-method"
+                        value="call"
+                        checked={contactMethod === "call"}
+                        onChange={() => setContactMethod("call")}
+                        className="sr-only"
+                      />
+                      <Phone size={16} className={contactMethod === "call" ? "text-[#D97706]" : "text-[#555560]"} aria-hidden="true" />
+                      Позвонить
+                    </label>
+                  </div>
+                </fieldset>
 
                 {/* Submit */}
                 <button
@@ -281,7 +264,7 @@ export default function OrderForm() {
                 )}
 
                 <p className="text-center text-[#333337] text-[11px] leading-relaxed pt-1">
-                  Мастер свяжется в течение 2 часов · Без спама · Без обязательств
+                  Мастер напишет в Viber или перезвонит в течение 2 часов · Без спама
                 </p>
               </form>
             )}

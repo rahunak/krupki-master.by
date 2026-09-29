@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
   { href: "#services", label: "Услуги" },
+  { href: "/blog", label: "Блог" },
   { href: "#delivery", label: "Доставка" },
   { href: "#contacts", label: "Контакты" },
 ];
@@ -33,13 +35,23 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Основная навигация">
           {NAV_LINKS.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="text-[13px] font-medium text-[#7A8494] hover:text-[#EDE8E0] transition-colors duration-200"
-            >
-              {n.label}
-            </a>
+            n.href.startsWith("/") ? (
+              <Link
+                key={n.href}
+                href={n.href}
+                className="text-[13px] font-medium text-[#7A8494] hover:text-[#EDE8E0] transition-colors duration-200"
+              >
+                {n.label}
+              </Link>
+            ) : (
+              <a
+                key={n.href}
+                href={n.href}
+                className="text-[13px] font-medium text-[#7A8494] hover:text-[#EDE8E0] transition-colors duration-200"
+              >
+                {n.label}
+              </a>
+            )
           ))}
         </nav>
 
@@ -66,15 +78,27 @@ export default function Header() {
         <div className="md:hidden border-t border-white/[0.06] bg-[#0C0C0E]/98 backdrop-blur-xl px-5 pb-6 pt-2">
           <nav aria-label="Мобильная навигация">
             {NAV_LINKS.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-between text-[#EDE8E0] text-base py-3.5 border-b border-white/[0.05] last:border-0"
-              >
-                {n.label}
-                <ChevronRight size={14} className="text-[#555560]" />
-              </a>
+              n.href.startsWith("/") ? (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between text-[#EDE8E0] text-base py-3.5 border-b border-white/[0.05] last:border-0"
+                >
+                  {n.label}
+                  <ChevronRight size={14} className="text-[#555560]" />
+                </Link>
+              ) : (
+                <a
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between text-[#EDE8E0] text-base py-3.5 border-b border-white/[0.05] last:border-0"
+                >
+                  {n.label}
+                  <ChevronRight size={14} className="text-[#555560]" />
+                </a>
+              )
             ))}
           </nav>
           <a
