@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Pricing from "@/components/sections/Pricing";
 import OrderForm from "@/components/sections/OrderForm";
+import { FAQ } from "@/components/sections/FAQ";
 import Footer from "@/components/footer/Footer";
 import MobileCTA from "@/components/sections/MobileCTA";
 
@@ -35,6 +36,7 @@ export default function Home() {
 
         <HowItWorks />
         <Pricing />
+        <FAQ />
         <OrderForm />
       </main>
 
