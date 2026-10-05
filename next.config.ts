@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // GSC «Страница с переадресацией»: единый канонический хост.
+  // www-поддомен указывает на Vercel, но его сертификат покрывает только
+  // apex-домен, поэтому HTTPS-цепочка для www рвётся. Гарантируем 308
+  // www → apex на уровне приложения, независимо от DNS-настройки хостинга.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.krupki-master.by" }],
+        destination: "https://krupki-master.by/:path*",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

@@ -102,7 +102,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "RCRvXuRfJm0JBiUWpkYODdoW4agcylIlSBObFNPp21w",
-    yandex: "6c961a7ea994387b",//Почему то не сработал, пришлось загружать шаблон яндекса через GTM
+    yandex: "6c961a7ea994387b",
   },
   category: "services",
 };
