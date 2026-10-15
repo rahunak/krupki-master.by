@@ -11,9 +11,9 @@ import Logo from "./Logo";
  * работают штатно (smooth scroll из layout.tsx).
  */
 const NAV_LINKS = [
-  { href: "/#services", label: "Услуги" },
+  { href: "/#services", label: "Заточка" },
+  { href: "/doski/", label: "Изделия из дерева" },
   { href: "/blog", label: "Блог" },
-  { href: "/#delivery", label: "Доставка" },
   { href: "/#contacts", label: "Контакты" },
 ];
 

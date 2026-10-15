@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
 
 export const metadata: Metadata = {
@@ -81,6 +82,11 @@ export default function Post() {
       <h3>Можно несколько предметов в одной посылке?</h3>
       <p>
         Да, и это выгодно: 3–4 ножа в одной коробке идут по цене одной пересылки.
+      </p>
+
+      <p>
+        Тем же механизмом мы отправляем и готовые изделия: <Link href="/doski/" className="text-[#D97706] hover:underline"> дубовые доски и менажницы</Link> приходят
+        наложенным платежом — осматриваете в отделении почты, потом платите.
       </p>
     </ArticleLayout>
   );

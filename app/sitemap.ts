@@ -1,11 +1,19 @@
 import type { MetadataRoute } from "next";
 
 const BLOG_POSTS = [
+  "chto-takoe-menazhnitsa",
   "zatochka-cepi-benzopily",
   "ugol-zatochki-nozha",
   "ruchnaya-ili-mashinnaya-zatochka",
   "kak-otpravit-instrument-belpochtoy",
   "skolko-stoit-zatochka",
+];
+
+const BOARD_PAGES = [
+  "doski",
+  "doski/razdelochnye",
+  "doski/menazhnitsy",
+  "doski/podarochnye_nabory",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...BOARD_PAGES.map((slug) => ({
+      url: `${baseUrl}/${slug}/`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: slug === "doski" ? 0.8 : 0.7,
+    })),
     {
       url: `${baseUrl}/blog`,
       lastModified,

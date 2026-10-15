@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
 
 export const metadata: Metadata = {
@@ -106,6 +107,12 @@ export default function Post() {
         Обычно нет: заводской угол подобран под назначение ножа. Менять имеет смысл,
         если вы используете нож не по назначению (например, хотите поварской под 15°
         для чистой нарезки рыбы).
+      </p>
+
+      <p>
+        Острый нож требует и <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline">правильной доски</Link> —
+        стеклянные и каменные поверхности убивают кромку за несколько резов.
+        У нас можно заказать <Link href="/doski/" className="text-[#D97706] hover:underline">дубовую доску ручной работы</Link>.
       </p>
     </ArticleLayout>
   );

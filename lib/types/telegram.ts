@@ -26,5 +26,9 @@ export interface OrderNotification {
   description?: string;
   /** Канал связи, который выбрал клиент в форме: viber (по умолчанию) | call */
   contactMethod?: "viber" | "call";
+  /** Адрес доставки (для заказов изделий из дерева) */
+  address?: string;
+  /** Тип изделия (для заказов изделий из дерева) */
+  productType?: string;
   createdAt: string;
 }

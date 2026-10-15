@@ -34,6 +34,14 @@ export function formatOrderMessage(order: OrderNotification): string {
     message += `🏙 <b>Город:</b> ${order.city}\n`;
   }
 
+  if (order.productType) {
+    message += `🪵 <b>Изделие:</b> ${order.productType}\n`;
+  }
+
+  if (order.address) {
+    message += `📦 <b>Адрес доставки:</b> ${order.address}\n`;
+  }
+
   if (methodLabel) {
     message += `➡️ <b>Связаться:</b> ${methodLabel}\n`;
   }

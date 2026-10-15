@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
 
 export const metadata: Metadata = {
@@ -77,6 +78,12 @@ export default function Post() {
         Если зубья сточены до метки (или короче), звенья растянуты и цепь не натягивается,
         а шина изношена «винтом» — честно скажем об этом и не возьмём деньги за бесполезную
         работу. Заточка выносит цепь 3–5 раз, дальше — замена.
+      </p>
+      <p>
+        Мы не только точим, но и делаем изделия для кухни под заказ: посмотрите наши
+        <Link href="/doski/" className="text-[#D97706] hover:underline"> изделия из дерева</Link> — разделочные
+        <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline"> доски из дуба</Link> и
+        <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline"> менажницы</Link> для подачи.
       </p>
     </ArticleLayout>
   );

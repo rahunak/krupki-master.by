@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
 
 export const metadata: Metadata = {
@@ -89,6 +90,12 @@ export default function Post() {
       <p>
         Отправить инструмент можно Белпочтой или Европочтой из любого города Беларуси —
         подробная инструкция в статье про отправку почтой.
+      </p>
+
+      <p>
+        Если вместо заточки нужен новый нож — у нас есть его деревянный аналог:
+        <Link href="/doski/" className="text-[#D97706] hover:underline">доски и менажницы из дуба</Link> ручной работы,
+        от 35 BYN с доставкой.
       </p>
     </ArticleLayout>
   );

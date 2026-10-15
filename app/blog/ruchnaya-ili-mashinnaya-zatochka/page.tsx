@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
 
 export const metadata: Metadata = {
@@ -90,7 +91,8 @@ export default function Post() {
 
       <p>
         Наша мастерская работает именно в ручном формате: от 10 BYN за кухонный нож,
-        принимаем инструмент почтой из любого города Беларуси.
+        принимаем инструмент почтой из любого города Беларуси. А ещё делаем кухонные
+        изделия из дуба — <Link href="/doski/" className="text-[#D97706] hover:underline">смотреть изделия</Link>.
       </p>
     </ArticleLayout>
   );

@@ -24,9 +24,13 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Валидация: телефон обязателен (минимум 9 цифр — номер РБ без кода страны)
-    const { phone, contactMethod } = body as {
+    const { phone, contactMethod, productType, address, city, description } = body as {
       phone?: string;
       contactMethod?: "viber" | "call";
+      productType?: string;
+      address?: string;
+      city?: string;
+      description?: string;
     };
 
     if (!phone || typeof phone !== "string" || phone.replace(/\D/g, "").length < 9) {
@@ -52,6 +56,10 @@ export async function POST(request: NextRequest) {
       orderId: makeOrderId(),
       phone: phone.trim(),
       contactMethod: contactMethod === "call" ? "call" : "viber",
+      productType: typeof productType === "string" ? productType.trim() : undefined,
+      address: typeof address === "string" ? address.trim() : undefined,
+      city: typeof city === "string" ? city.trim() : undefined,
+      description: typeof description === "string" ? description.trim() : undefined,
       createdAt: new Date().toISOString(),
     };
 
