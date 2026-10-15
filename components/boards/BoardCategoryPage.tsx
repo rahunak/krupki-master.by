@@ -4,8 +4,9 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import MobileCTA from "@/components/sections/MobileCTA";
 import BoardOrderForm from "@/components/sections/BoardOrderForm";
-import { PRODUCTS, BOARD_PAGES, HERO_PHOTOS, type BoardProduct } from "@/data/boards";
+import { PRODUCTS, BOARD_PAGES, HERO_PHOTOS, GIFT_HIDDEN, type BoardProduct } from "@/data/boards";
 import ProductPhotoGallery from "./ProductPhotoGallery";
+import Breadcrumbs, { type BreadcrumbItem } from "./Breadcrumbs";
 
 /**
  * Единый шаблон товарной страницы направления «Изделия из дерева».
@@ -80,7 +81,29 @@ export default function BoardCategoryPage(props: BoardPageProps) {
     })),
   };
 
-  const otherPages = BOARD_PAGES.filter((p) => p.slug && p.slug !== props.category);
+  // TEMP-GIFT: подарочные наборы временно скрыты — см. GIFT_HIDDEN в data/boards.ts
+  const otherPages = BOARD_PAGES.filter(
+    (p) => p.slug && p.slug !== props.category && !(GIFT_HIDDEN && p.slug === "podarochnye_nabory"),
+  );
+
+  // Хлебные крошки: Главная / Изделия из дерева / <категория>
+  const categoryTitle = BOARD_PAGES.find((p) => p.slug === props.category)?.title ?? props.h1;
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: "Главная", href: "/" },
+    { name: "Изделия из дерева", href: "/doski/" },
+    { name: categoryTitle },
+  ];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      // Текущая страница без item — валидно для Google
+      ...(c.href ? { item: `${SITE_URL}${c.href}` } : {}),
+    })),
+  };
 
   return (
     <div className="min-h-screen bg-[#0C0C0E] text-[#EDE8E0] antialiased overflow-x-hidden">
@@ -95,9 +118,14 @@ export default function BoardCategoryPage(props: BoardPageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
 
         {/* Hero + фото категории */}
         <section className="py-16 md:py-24 px-5 max-w-6xl mx-auto">
+          <Breadcrumbs items={breadcrumbs} />
           <div className="grid md:grid-cols-[7fr_5fr] gap-10 items-center">
             <div>
               <h1 className="text-3xl md:text-5xl font-bold tracking-tight">

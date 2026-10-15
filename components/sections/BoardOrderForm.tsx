@@ -10,15 +10,22 @@ import SectionLabel from "./SectionLabel";
  * Отправка — тот же API-эндпоинт /api/telegram/notify (общий флоу заявок).
  */
 
+import { GIFT_HIDDEN } from "@/data/boards";
+
 type ProductType = "small-board" | "large-board" | "menazhnitsa" | "gift-set" | "other";
 
 const PRODUCT_OPTIONS: { value: ProductType; label: string }[] = [
   { value: "small-board", label: "Доска 30×20 см — 35–45 р." },
   { value: "large-board", label: "Доска 40×30 см — 55–75 р." },
   { value: "menazhnitsa", label: "Менажница — 80–130 р." },
+  // TEMP-GIFT: вариант скрыт до появления подарочных наборов (GIFT_HIDDEN в data/boards.ts)
   { value: "gift-set", label: "Подарочный набор — 120–140 р." },
   { value: "other", label: "Другое / на заказ" },
 ];
+
+const visibleProductOptions = PRODUCT_OPTIONS.filter(
+  (o) => !(GIFT_HIDDEN && o.value === "gift-set"),
+);
 
 export default function BoardOrderForm() {
   const [form, setForm] = useState({ phone: "", address: "", notes: "" });
@@ -191,7 +198,7 @@ export default function BoardOrderForm() {
                     Что заказать <span className="text-[#D97706]">*</span>
                   </legend>
                   <div className="space-y-2.5">
-                    {PRODUCT_OPTIONS.map((opt) => (
+                    {visibleProductOptions.map((opt) => (
                       <label
                         key={opt.value}
                         className={`flex items-center gap-3 cursor-pointer border rounded-[2px] px-4 py-3 text-sm transition-all duration-150 ${

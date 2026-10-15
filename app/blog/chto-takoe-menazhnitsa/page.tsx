@@ -90,7 +90,7 @@ export default function Post() {
       <p>
         Дубовая менажница уместна не только на праздники: на ней подают завтрак
         («сыр-мед-хлеб»), сервированный ужин для двоих, и это самая частая
-        покупка на <Link href="/doski/podarochnye_nabory/" className="text-[#D97706] hover:underline">подарок на новоселье</Link> —
+        покупка как <Link href="/doski/" className="text-[#D97706] hover:underline">подарок на новоселье</Link> —
         к новой кухне нужна и новая доска для подачи. По цене и срокам
         смотрите <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline">каталог менажниц из дуба</Link> —
         классические и с соусниками, изготовление 3–7 дней, доставка по Беларуси.

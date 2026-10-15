@@ -1,3 +1,9 @@
+/**
+ * ВРЕМЕННО ОТКЛЮЧЕНО (не роут — расширение .disabled): подарочных коробок ещё нет, фото нет.
+ * Вернуть: mv page.tsx.disabled page.tsx + вернуть "doski/podarochnye_nabory" в app/sitemap.ts,
+ * в SITEMAP_URLS (app/api/indexnow/route.ts), в data/boards.ts — PRODUCTS["podarochnye_nabory"],
+ * BOARD_PAGES (снять флаг disabled), HERO_PHOTOS и гифт-наборы в текстах см. пометки TEMP-GIFT.
+ */
 import type { Metadata } from "next";
 import BoardCategoryPage from "@/components/boards/BoardCategoryPage";
 

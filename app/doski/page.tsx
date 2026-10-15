@@ -4,19 +4,19 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import MobileCTA from "@/components/sections/MobileCTA";
 import BoardOrderForm from "@/components/sections/BoardOrderForm";
-import { BOARD_PAGES, PRODUCTS } from "@/data/boards";
+import { BOARD_PAGES, PRODUCTS, GIFT_HIDDEN } from "@/data/boards";
+import Breadcrumbs, { type BreadcrumbItem } from "@/components/boards/Breadcrumbs";
 
 const SITE_URL = "https://krupki-master.by";
 
 export const metadata: Metadata = {
   title: "Изделия из дерева ручной работы на заказ | Krupki Master",
   description:
-    "Разделочные доски, менажницы и подарочные наборы из массива дуба ручной работы. Изготовление под заказ с доставкой по всей Беларуси. Цены от 35 р.",
+    "Разделочные доски и менажницы из массива дуба ручной работы. Изготовление под заказ с доставкой по всей Беларуси. Цены от 35 р.",
   keywords: [
     "изделия из дерева на заказ Беларусь",
     "разделочная доска дуб купить Беларусь",
     "менажница деревянная купить",
-    "подарочный набор доска соусники",
     "деревянные изделия ручной работы Минск",
     "Крупки Мастер доски",
   ],
@@ -26,16 +26,33 @@ export const metadata: Metadata = {
 const ALL_PRODUCTS = [
   ...PRODUCTS.razdelochnye,
   ...PRODUCTS.menazhnitsy,
-  ...PRODUCTS["podarochnye_nabory"],
+  // TEMP-GIFT: подарочные наборы временно скрыты (нет товара/фото) — GIFT_HIDDEN в data/boards.ts
+  ...(GIFT_HIDDEN ? [] : PRODUCTS["podarochnye_nabory"]),
 ];
 
 export default function DoskiPage() {
+  // Хлебные крошки: Главная / Изделия из дерева (текущая)
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: "Главная", href: "/" },
+    { name: "Изделия из дерева" },
+  ];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      ...(c.href ? { item: `${SITE_URL}${c.href}` } : {}),
+    })),
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Изготовление изделий из дерева под заказ",
     description:
-      "Ручное изготовление разделочных досок, менажниц и подарочных наборов из массива дуба с доставкой по всей Беларуси",
+      "Ручное изготовление разделочных досок и менажниц из массива дуба с доставкой по всей Беларуси",
     provider: {
       "@type": "LocalBusiness",
       name: "Крупки Мастер",
@@ -60,14 +77,19 @@ export default function DoskiPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
         {/* Hero */}
         <section className="py-16 md:py-24 px-5 max-w-6xl mx-auto">
+          <Breadcrumbs items={breadcrumbs} />
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#EDE8E0]">
             Изделия из дерева
             <span className="block text-[#D97706] mt-2">ручной работы под заказ</span>
           </h1>
           <p className="text-[#8B94A3] text-lg leading-relaxed max-w-2xl mt-6">
-            Мастерская в Крупках делает разделочные доски, менажницы и подарочные наборы
+            Мастерская в Крупках делает разделочные доски и менажницы
             из массива дуба. Каждое изделие вытачивается вручную, отделывается маслом и
             воском — и отправляется почтой по всей Беларуси, оплата при получении.
           </p>
@@ -85,7 +107,7 @@ export default function DoskiPage() {
             Что делаем
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BOARD_PAGES.filter((p) => p.slug).map((p) => (
+            {BOARD_PAGES.filter((p) => p.slug && !(GIFT_HIDDEN && p.slug === "podarochnye_nabory")).map((p) => (
               <Link
                 key={p.slug}
                 href={`/doski/${p.slug}/`}

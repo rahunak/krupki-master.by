@@ -26,7 +26,8 @@ export default function ProductPhotoGallery({
   priority = false,
 }: {
   photos: string[];
-  labels: string[];
+  /** Подписи типов изделий под фото — опционально: без них показываем «Фото» */
+  labels?: string[];
   altBase: string;
   /** Первый слайд карточек первого экрана — LCP-кандидат, пропускает lazy-loading */
   priority?: boolean;
@@ -70,15 +71,16 @@ export default function ProductPhotoGallery({
             <div className="relative aspect-[5/5.2] max-h-[420px] w-full bg-[#191613] border-y border-white/[0.06]">
               <Image
                 src={`/${slug}`}
-                alt={`${altBase} — ракурс ${i + 1}: ${labels[i] ?? "фото"}`}
+                alt={`${altBase} — ракурс ${i + 1}: ${labels?.[i] ?? "фото"}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 32rem"
                 priority={priority && i === 0}
                 loading={priority && i === 0 ? undefined : "lazy"}
                 className="object-contain"
               />
-              <span className="m-4 absolute bottom-0 left-0 rounded-[2px] bg-black/40 px-2.5 py-1 text-[10px] uppercase tracking-wider text-[#8B94A3] backdrop-blur-sm z-10">
-                {labels[i] ?? "Фото"} · {i + 1}/{photos.length}
+              <span className="m-4 absolute bottom-0 left-0 rounded-[2px] bg-[#0C0C0E]/90 px-2.5 py-1 text-[10px] uppercase tracking-wider text-[#EDE8E0] shadow-[0_1px_4px_rgba(0,0,0,0.7)] ring-1 ring-white/20 backdrop-blur-sm z-10">
+                {labels?.[i] ?? "Фото"}
+                <span className="text-[#A9B0BC]"> · {i + 1}/{photos.length}</span>
               </span>
             </div>
           </div>

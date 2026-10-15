@@ -9,11 +9,11 @@ const BLOG_POSTS = [
   "skolko-stoit-zatochka",
 ];
 
+// TEMP-GIFT: /doski/podarochnye_nabory временно исключён из sitemap (нет товара/фото)
 const BOARD_PAGES = [
   "doski",
   "doski/razdelochnye",
   "doski/menazhnitsy",
-  "doski/podarochnye_nabory",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

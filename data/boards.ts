@@ -4,10 +4,17 @@
  * Фото: реальные фото изделий в /public/images/*.avif (пути ведут из корня /public).
  */
 
+/**
+ * TEMP-GIFT: категория «Подарочные наборы» временно отключена до появления подарочных коробок:
+ * нет роута, фото и товара. Вернуть: rename app/doski/podarochnye_nabory/page.tsx.disabled → page.tsx,
+ * вернуть URL в app/sitemap.ts и app/api/indexnow/route.ts, поставить GIFT_HIDDEN = false.
+ */
+export const GIFT_HIDDEN = true as const;
+
 export const BOARDS_SECTION = {
   title: "Изделия из дерева ручной работы",
   description:
-    "Разделочные доски, менажницы и подарочные наборы из массива дуба. Изготовление под заказ в Крупках, доставка по всей Беларуси.",
+    "Разделочные доски и менажницы из массива дуба. Изготовление под заказ в Крупках, доставка по всей Беларуси.",
 };
 
 export interface BoardProduct {
@@ -110,6 +117,8 @@ export const PRODUCTS: Record<string, BoardProduct[]> = {
     },
   ],
   "podarochnye_nabory": [
+    // TEMP-GIFT: ВРЕМЕННО НЕ ИСПОЛЬЗУЕТСЯ (страница /doski/podarochnye_nabory отключена,
+    // из /doski/ наборы тоже скрыты — см. фильтр GIFT_HIDDEN ниже).
     {
       slug: "gift-basic",
       name: "Подарочный набор «Базовый»",
