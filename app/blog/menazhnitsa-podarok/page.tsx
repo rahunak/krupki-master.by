@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Кому и почему дарят менажницу: новоселье, свадьба, юбилей, 8 марта, Новый год. Как выбрать деревянную менажницу из дуба в подарок, что написать при гравировке и в чём она лучше набора посуды.",
   alternates: { canonical: "https://krupki-master.by/blog/menazhnitsa-podarok" },
+  openGraph: {
+    title: "Менажница как подарок: 7 сценариев на новоселье, свадьбу и праздник | Крупки Мастер",
+    description:
+      "Кому и почему дарят менажницу: новоселье, свадьба, юбилей, 8 марта, Новый год. Что написать при гравировке.",
+    url: "https://krupki-master.by/blog/menazhnitsa-podarok",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-podarok.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Дубовая доска-сервер с ручкой — интерьерный подарок",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Менажница как подарок: 7 сценариев",
+    description: "Новоселье, свадьба, юбилей — как выбрать и что написать при гравировке.",
+    images: ["https://krupki-master.by/blog_og/og-blog-podarok.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

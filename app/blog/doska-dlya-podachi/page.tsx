@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Как красиво подать еду на деревянной доске: сырная плато, стейк, закуски к вину, завтрак и праздничный стол. Какая доска для подачи подходит, какой размер нужен и почему дуб.",
   alternates: { canonical: "https://krupki-master.by/blog/doska-dlya-podachi" },
+  openGraph: {
+    title: "Доска для подачи: 5 расстановок (сырная, стейк, закуски) | Крупки Мастер",
+    description:
+      "Как красиво подать еду на деревянной доске: сырная плато, стейк, закуски к вину, завтрак и праздничный стол.",
+    url: "https://krupki-master.by/blog/doska-dlya-podachi",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-podacha.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Сервировочная доска-менажница с соусниками из дуба",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Доска для подачи: 5 расстановок, которые работают всегда",
+    description: "Сырная плато, стейк, закуски, завтрак — как подать красиво на дубовой доске.",
+    images: ["https://krupki-master.by/blog_og/og-blog-podacha.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

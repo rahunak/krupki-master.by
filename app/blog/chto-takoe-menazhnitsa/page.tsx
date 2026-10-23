@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Менажница — доска для подачи блюд: сыра, мяса, закусок. Что это такое, чем отличается от разделочной доски, как выбрать и использовать. Сервировочные менажницы из дуба с доставкой по Беларуси.",
   alternates: { canonical: "https://krupki-master.by/blog/chto-takoe-menazhnitsa" },
+  openGraph: {
+    title: "Что такое менажница и для чего она нужна | Крупки Мастер",
+    description:
+      "Менажница — доска для подачи блюд: сыра, мяса, закусок. Чем отличается от разделочной, как выбрать и использовать.",
+    url: "https://krupki-master.by/blog/chto-takoe-menazhnitsa",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-menazhnitsa.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Секционная менажница и соусники из дуба на столе",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Что такое менажница и для чего она нужна",
+    description: "Доска для подачи: как выбрать и чем отличается от разделочной.",
+    images: ["https://krupki-master.by/blog_og/og-blog-menazhnitsa.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

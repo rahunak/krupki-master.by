@@ -3,6 +3,8 @@ import Link from "next/link";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
+const SITE_URL = "https://krupki-master.by";
+
 const POSTS = [
   {
     slug: "doska-dlya-podachi",
@@ -83,6 +85,29 @@ export const metadata: Metadata = {
   description:
     "Статьи о заточке цепей бензопил и ножей, углах заточки, ценах в Беларуси — и о деревянных изделиях: что такое менажница, какую доску выбрать.",
   alternates: { canonical: "https://krupki-master.by/blog" },
+  openGraph: {
+    title: "Блог о заточке и деревянных изделиях | Крупки Мастер",
+    description:
+      "Статьи о заточке цепей и ножей — и о деревянных изделиях: что такое менажница, какую разделочную доску выбрать.",
+    url: "https://krupki-master.by/blog",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "website",
+    images: [
+      {
+        url: "https://krupki-master.by/og-doski.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Доска и менажница из дуба — блог Крупки Мастер",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Блог о заточке и деревянных изделиях | Крупки Мастер",
+    description: "Статьи про заточку, доски и менажницы из дуба.",
+    images: ["https://krupki-master.by/og-doski.jpg"],
+  },
 };
 
 export default function BlogIndex() {

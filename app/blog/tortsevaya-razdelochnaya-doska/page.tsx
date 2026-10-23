@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Торцевая доска (end grain): что это такое, чем отличается от обычной ламинированной, чем хороша и почему стоит дороже. Строение древесины, срок службы, уход — и где заказать доску из дуба в Беларуси.",
   alternates: { canonical: "https://krupki-master.by/blog/tortsevaya-razdelochnaya-doska" },
+  openGraph: {
+    title: "Торцевая разделочная доска: что это, чем отличается и почему дороже | Крупки Мастер",
+    description:
+      "Торцевая доска (end grain): что это такое, чем отличается от обычной и почему стоит дороже. Где заказать из дуба в Беларуси.",
+    url: "https://krupki-master.by/blog/tortsevaya-razdelochnaya-doska",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-tortsevaya.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Разделочная доска из массива дуба — крупная фактура",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Торцевая разделочная доска: что это и почему дороже",
+    description: "End grain против обычной — строение древесины, срок службы, уход.",
+    images: ["https://krupki-master.by/blog_og/og-blog-tortsevaya.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

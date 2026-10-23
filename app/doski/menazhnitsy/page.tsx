@@ -19,6 +19,29 @@ export const metadata: Metadata = {
     "доска для подачи мяса",
   ],
   alternates: { canonical: `${SITE_URL}/doski/menazhnitsy/` },
+  openGraph: {
+    title: "Менажница и сервировочная доска из дуба — заказать с доставкой по Беларуси",
+    description:
+      "Менажница и сервировочная доска из массива дуба ручной работы: классическая 40×25 см от 80 р., с соусниками от 100 р. Изготовление в Крупках, доставка по всей Беларуси.",
+    url: `${SITE_URL}/doski/menazhnitsy/`,
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-menazhnitsy.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Деревянная менажница с соусниками из дуба — ручная работа",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Менажница из дуба — заказать с доставкой по Беларуси",
+    description: "Сервировка стола из массива дуба, ручная работа, от 80 р.",
+    images: [`${SITE_URL}/og-menazhnitsy.jpg`],
+  },
 };
 
 export default function MenazhnitsyPage() {

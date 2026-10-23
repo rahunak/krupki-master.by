@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Из какого материала выбрать разделочную доску: честное сравнение дуба, бамбука, пластика и стали. Какая доска лучше для мяса, рыба и овощей, какая безопаснее и сколько она служит. Доски из массива дуба под заказ в Беларуси.",
   alternates: { canonical: "https://krupki-master.by/blog/kak-vybrat-razdelochnuyu-dosku" },
+  openGraph: {
+    title: "Как выбрать разделочную доску: дуб, бамбук, пластик, сталь | Крупки Мастер",
+    description:
+      "Честное сравнение материалов: что лучше для мяса, бережнее для ножей и безопаснее для здоровья.",
+    url: "https://krupki-master.by/blog/kak-vybrat-razdelochnuyu-dosku",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-vybor.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Разделочная доска из массива дуба",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как выбрать разделочную доску: дуб, бамбук, пластик, сталь",
+    description: "Честное сравнение материалов — и сколько служит каждый из них.",
+    images: ["https://krupki-master.by/blog_og/og-blog-vybor.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

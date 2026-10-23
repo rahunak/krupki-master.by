@@ -21,6 +21,29 @@ export const metadata: Metadata = {
     "Крупки Мастер доски",
   ],
   alternates: { canonical: `${SITE_URL}/doski/` },
+  openGraph: {
+    title: "Изделия из дерева ручной работы на заказ | Krupki Master",
+    description:
+      "Разделочные доски и менажницы из массива дуба ручной работы. Изготовление под заказ с доставкой по всей Беларуси. Цены от 35 р.",
+    url: `${SITE_URL}/doski/`,
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-doski.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Разделочная доска и менажница из дуба ручной работы", 
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Изделия из дерева ручной работы на заказ | Krupki Master",
+    description: "Доски и менажницы из дуба под заказ. Доставка по Беларуси.",
+    images: [`${SITE_URL}/og-doski.jpg`],
+  },
 };
 
 const ALL_PRODUCTS = [

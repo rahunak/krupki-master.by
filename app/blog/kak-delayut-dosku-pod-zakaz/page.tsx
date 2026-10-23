@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Этапы работы мастерской: выбор дуба, раскрой на ламели, склеивание и пресс, шлифовка, покрытие маслом и воском, гравировка, упаковка и отправка. Почему сделать доску руками самим дольше и дороже.",
   alternates: { canonical: "https://krupki-master.by/blog/kak-delayut-dosku-pod-zakaz" },
+  openGraph: {
+    title: "Как делают доску под заказ: этапы от ламели до готовой доски | Крупки Мастер",
+    description:
+      "Этапы работы мастерской: выбор дуба, раскрой на ламели, склеивание и пресс, шлифовка, масло и воск, гравировка, упаковка и отправка.",
+    url: "https://krupki-master.by/blog/kak-delayut-dosku-pod-zakaz",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/blog_og/og-blog-zakaz.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Дубовая доска с обожжённой ручкой — ручная работа",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как делают разделочную доску под заказ: 7 этапов мастерской",
+    description: "От заготовки дуба до гравировки — и почему самому сделать дольше и дороже.",
+    images: ["https://krupki-master.by/blog_og/og-blog-zakaz.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

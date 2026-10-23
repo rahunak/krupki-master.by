@@ -7,6 +7,29 @@ export const metadata: Metadata = {
   description:
     "Как обработать новую деревянную доску, чем покрыть (масло, воск), как часто обновлять пропитку и почему нельзя мыть доску из дуба в посудомойке. Практический гайд с доставкой досок по Беларуси.",
   alternates: { canonical: "https://krupki-master.by/blog/uhod-za-doskoy-iz-duba" },
+  openGraph: {
+    title: "Как ухаживать за доской из дуба: масло, воск, что нельзя делать | Крупки Мастер",
+    description:
+      "Как обработать новую доску, чем покрыть и как часто обновлять пропитку — и почему нельзя мыть в посудомойке.",
+    url: "https://krupki-master.by/blog/uhod-za-doskoy-iz-duba",
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "article",
+    images: [
+      {
+        url: "https://krupki-master.by/og-razdelochnye.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Разделочная доска из дуба после обработки маслом",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как ухаживать за доской из дуба: масло, воск и запреты",
+    description: "Практический гайд: первая пропитка, обновление, посудомойка под запретом.",
+    images: ["https://krupki-master.by/og-razdelochnye.jpg"],
+  },
 };
 
 const META: ArticleMeta = {

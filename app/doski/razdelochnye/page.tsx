@@ -17,6 +17,29 @@ export const metadata: Metadata = {
     "разделочная доска Брест",
   ],
   alternates: { canonical: `${SITE_URL}/doski/razdelochnye/` },
+  openGraph: {
+    title: "Разделочные доски из дуба ручной работы — купить с доставкой по Беларуси",
+    description:
+      "Разделочные доски из массива дуба ручной работы: 30×20 см от 35 р., 40×30 см от 55 р. Изготовление под заказ в Крупках, доставка Белпочтой по всей Беларуси.",
+    url: `${SITE_URL}/doski/razdelochnye/`,
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-razdelochnye.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Разделочная доска из дуба с ручкой — ручная работа",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Разделочные доски из дуба — под заказ с доставкой по Беларуси",
+    description: "Массив дуба, ручная работа, от 35 р. Доставка Белпочтой по РБ.",
+    images: [`${SITE_URL}/og-razdelochnye.jpg`],
+  },
 };
 
 export default function RazdelochnyePage() {
