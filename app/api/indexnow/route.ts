@@ -35,6 +35,13 @@ const SITEMAP_URLS = [
   `${SITE_URL}/blog/ruchnaya-ili-mashinnaya-zatochka`,
   `${SITE_URL}/blog/kak-otpravit-instrument-belpochtoy`,
   `${SITE_URL}/blog/skolko-stoit-zatochka`,
+  `${SITE_URL}/blog/chto-takoe-menazhnitsa`,
+  `${SITE_URL}/blog/doska-dlya-podachi`,
+  `${SITE_URL}/blog/kak-delayut-dosku-pod-zakaz`,
+  `${SITE_URL}/blog/kak-vybrat-razdelochnuyu-dosku`,
+  `${SITE_URL}/blog/menazhnitsa-podarok`,
+  `${SITE_URL}/blog/tortsevaya-razdelochnaya-doska`,
+  `${SITE_URL}/blog/uhod-za-doskoy-iz-duba`,
 ];
 
 export async function POST(req: NextRequest) {
