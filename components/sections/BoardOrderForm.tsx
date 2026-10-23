@@ -11,6 +11,7 @@ import SectionLabel from "./SectionLabel";
  */
 
 import { GIFT_HIDDEN } from "@/data/boards";
+import { trackEvent } from "@/lib/analytics";
 
 type ProductType = "small-board" | "large-board" | "menazhnitsa" | "gift-set" | "other";
 
@@ -78,6 +79,8 @@ export default function BoardOrderForm() {
       setSubmitted(true);
       setForm({ phone: "", address: "", notes: "" });
       setProduct("large-board");
+      // Конверсия для GA4 (keyEvent generate_lead): заказ доски успешно ушёл
+      trackEvent("generate_lead", { form: "board", product_type: selected });
     } catch (err) {
       console.error("Error submitting board order:", err);
       setError("Произошла ошибка при отправке заказа. Попробуйте ещё раз или позвоните нам.");

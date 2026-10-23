@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
 const BLOG_POSTS = [
+  "doska-dlya-podachi",
+  "kak-delayut-dosku-pod-zakaz",
   "kak-vybrat-razdelochnuyu-dosku",
   "menazhnitsa-podarok",
   "tortsevaya-razdelochnaya-doska",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Phone, MessageCircle } from "lucide-react";
 import SectionLabel from "./SectionLabel";
 import { supabase } from "@/lib/supabase";
+import { trackEvent } from "@/lib/analytics";
 
 const PERKS = [
   "Фото до и после заточки",
@@ -55,6 +56,8 @@ export default function OrderForm() {
       setSubmitted(true);
       setForm({ phone: "" });
       setContactMethod("viber");
+      // Конверсия для GA4 (keyEvent generate_lead): заявка успешно ушла
+      trackEvent("generate_lead", { form: "main", contact_method: contactMethod });
     } catch (err) {
       console.error("Error submitting order:", err);
       setError("Произошла ошибка при отправке заявки. Попробуйте ещё раз или позвоните нам.");
