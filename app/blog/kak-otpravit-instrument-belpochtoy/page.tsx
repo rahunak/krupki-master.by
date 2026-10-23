@@ -86,7 +86,11 @@ export default function Post() {
 
       <p>
         Тем же механизмом мы отправляем и готовые изделия: <Link href="/doski/" className="text-[#D97706] hover:underline"> дубовые доски и менажницы</Link> приходят
-        наложенным платежом — осматриваете в отделении почты, потом платите.
+        наложенным платежом — осматриваете в отделении почты, потом платите. Чтобы новая
+        доска сразу была готова к работе, её пропитывают маслом и воском — как именно,
+        написано в статье <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">об уходе за доской из дуба</Link>,
+        а как доска изготавливается с нуля —{" "}
+        <Link href="/blog/kak-delayut-dosku-pod-zakaz" className="text-[#D97706] hover:underline">«Как делают доску под заказ»</Link>.
       </p>
     </ArticleLayout>
   );

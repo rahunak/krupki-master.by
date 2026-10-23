@@ -92,7 +92,9 @@ export default function Post() {
       <p>
         Наша мастерская работает именно в ручном формате: от 10 BYN за кухонный нож,
         принимаем инструмент почтой из любого города Беларуси. А ещё делаем кухонные
-        изделия из дуба — <Link href="/doski/" className="text-[#D97706] hover:underline">смотреть изделия</Link>.
+        изделия из дуба — <Link href="/doski/" className="text-[#D97706] hover:underline">смотреть изделия</Link>. А почему на
+        дубовой доске лезвие тупится медленнее — в статье{" "}
+        <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
       </p>
     </ArticleLayout>
   );

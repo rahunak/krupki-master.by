@@ -114,6 +114,13 @@ export default function Post() {
         стеклянные и каменные поверхности убивают кромку за несколько резов.
         У нас можно заказать <Link href="/doski/" className="text-[#D97706] hover:underline">дубовую доску ручной работы</Link>.
       </p>
+
+      <p>
+        Какая поверхность дольше всего бережёт лезвие и почему на торцевом массиве
+        клинок тупится медленнее — читайте в статьях{" "}
+        <Link href="/blog/kak-vybrat-razdelochnuyu-dosku" className="text-[#D97706] hover:underline">«Как выбрать разделочную доску»</Link> и{" "}
+        <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
+      </p>
     </ArticleLayout>
   );
 }
