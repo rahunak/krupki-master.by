@@ -90,6 +90,43 @@ export default function DoskiPage() {
     areaServed: { "@type": "Country", name: "Беларусь" },
   };
 
+  // FAQ строго из текста этой страницы (hero, цены, гарантия) — без привнесённых фактов.
+  const faq = [
+    {
+      q: "Что изготавливает мастерская Крупки Мастер?",
+      a: "Разделочные доски и менажницы из массива дуба. Каждое изделие вытачивается вручную, отделывается маслом и воском и отправляется почтой по всей Беларуси.",
+    },
+    {
+      q: "Сколько стоит разделочная доска или менажница?",
+      a: "Цены — в таблице «Цены на изделия»: от 35 р. за разделочную доску и от 80 р. за менажницу. Точная цена зависит от размера и оттенка дерева, называем её после заявки, до изготовления — без сюрпризов.",
+    },
+    {
+      q: "Сколько ждать изготовление под заказ?",
+      a: "3–7 дней. Срок указан в характеристиках мастерской; точную дату называем после заявки, до изготовления.",
+    },
+    {
+      q: "Как происходит доставка и оплата?",
+      a: "Отправляем почтой по всей Беларуси, оплата при получении. Вы осматриваете изделие прямо в отделении почты перед оплатой.",
+    },
+    {
+      q: "Из какого дерева делаются доски и менажницы?",
+      a: "Из массива дуба. Каждое изделие вытачивается вручную и отделывается маслом и воском.",
+    },
+    {
+      q: "Что с гарантией?",
+      a: "Каждое изделие мастер проверяет лично перед отправкой. Если при получении обнаружится производственный дефект (трещина, недошлифовка, отслоение) — сделаем замену или переделку. Если посылка пришла повреждённой при доставке — свяжитесь с нами, разберёмся и решим это.",
+    },
+  ];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#0C0C0E] text-[#EDE8E0] antialiased overflow-x-hidden">
       <Header />
@@ -99,6 +136,10 @@ export default function DoskiPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -174,6 +215,24 @@ export default function DoskiPage() {
             Цена зависит от размера и оттенка дерева. Называем точную цену после заявки,
             до изготовления — без сюрпризов.
           </p>
+        </section>
+
+        {/* FAQ */}
+        <section aria-labelledby="doski-faq" className="py-10 px-5 max-w-4xl mx-auto">
+          <h2 id="doski-faq" className="text-3xl font-bold mb-8">
+            Частые вопросы
+          </h2>
+          <div className="space-y-4">
+            {faq.map((f) => (
+              <details
+                key={f.q}
+                className="border border-white/[0.08] rounded-[3px] bg-white/[0.02] p-5"
+              >
+                <summary className="text-[#EDE8E0] font-semibold cursor-pointer">{f.q}</summary>
+                <p className="text-[#7A8494] text-sm mt-3 leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
         </section>
 
         {/* Гарантия */}
