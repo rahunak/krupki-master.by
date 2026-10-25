@@ -6,6 +6,7 @@ import "./globals.css";
 import { SITE_URL, SITE_NAME, PHONE_NUMBER, POSTAL_CODE } from "@/data/contacts";
 import YandexMetrika from "@/components/YandexMetrika";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import PhoneClickTracker from "@/components/PhoneClickTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -227,6 +228,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* GA4 — прямое подключение через gtag.js (без GTM).
             ID вписать в components/GoogleAnalytics.tsx. */}
         {isProduction && <GoogleAnalytics enabled={isProduction} />}
+
+        {/* Глобальный трекер кликов по телефонным ссылкам → GA4 tel_click */}
+        {isProduction && <PhoneClickTracker />}
 
         {isProduction && (
           <>
