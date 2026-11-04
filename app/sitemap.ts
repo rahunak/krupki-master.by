@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
 const BLOG_POSTS = [
+  "chto-podarit-na-novyi-god",
+  "uspet-zakazat-podarok-na-novyi-god",
   "doska-dlya-podachi",
   "kak-delayut-dosku-pod-zakaz",
   "kak-vybrat-razdelochnuyu-dosku",
