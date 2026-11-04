@@ -35,11 +35,14 @@ export function Prose({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** CTA-блок в конце статьи: конверсия в заявку */
-export function ArticleCTA({ text }: { text: string }) {
+/** CTA-блок в конце статьи: конверсия в заявку.
+ *  heading — опциональный заголовок: дефолт про заточку (старые посты),
+ *  посты про доски/менажницы передают свой. */
+export function ArticleCTA({ heading, text }: { heading?: string; text: string }) {
+  const ctaHeading = heading ?? "Нужна профессиональная заточка?";
   return (
     <div className="mt-14 border border-[#D97706]/25 bg-[#D97706]/[0.06] rounded-[3px] p-7">
-      <p className="text-[#EDE8E0] font-semibold text-lg mb-2">Нужна профессиональная заточка?</p>
+      <p className="text-[#EDE8E0] font-semibold text-lg mb-2">{ctaHeading}</p>
       <p className="text-[#8B94A3] text-sm leading-relaxed mb-5">{text}</p>
       <div className="flex flex-col sm:flex-row gap-3">
         <Link

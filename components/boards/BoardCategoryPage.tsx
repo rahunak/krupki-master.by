@@ -45,6 +45,7 @@ export default function BoardCategoryPage(props: BoardPageProps) {
     image: [imageUrl(heroPhoto), ...products.flatMap((p) => (p.photos ?? []).slice(0, 1).map(imageUrl)).slice(0, 4)],
     ...(props.jsonLdType === "Product"
       ? {
+        brand: { "@type": "Brand", name: "Крупки Мастер" },
         offers: products.map((p) => ({
           "@type": "Offer",
           name: p.name,
@@ -53,6 +54,37 @@ export default function BoardCategoryPage(props: BoardPageProps) {
           price: p.priceFrom,
           availability: "https://schema.org/PreOrder",
           url: pageUrl,
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: { "@type": "MonetaryAmount", value: 8, currency: "BYN" },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "BY",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 3,
+                maxValue: 7,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 1,
+                maxValue: 3,
+                unitCode: "DAY",
+              },
+            },
+          },
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "BY",
+            returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+            merchantReturnDays: 30,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn",
+          },
         })),
       }
       : {}),

@@ -117,7 +117,7 @@ export default function Post() {
         <li><strong>Тем, кто готовит ножом каждый день</strong> — и устал менять доски;</li>
         <li><strong>Тем, у кого дорогие ножи</strong> — клинок на торцевой древесине дольше остаётся острым (мы уже писали об <Link href="/blog/ugol-zatochki-nozha" className="text-[#D97706] hover:underline">углах заточки</Link>);</li>
         <li><strong>Тем, кто хочет одну доску на 10+ лет</strong> и готов за ней ухаживать;</li>
-        <li><strong>Как подарок</strong>: торцевой блок из дуба с гравировкой — уместный презент к набору ножей. Если ищете именно подарок — посмотрите <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline">менажницы из дуба</Link> и <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline">разделочные доски под заказ</Link>.</li>
+        <li><strong>Как подарок</strong>: торцевой блок из дуба — уместный презент к набору ножей. Если ищете именно подарок — посмотрите <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline">менажницы из дуба</Link> и <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline">разделочные доски под заказ</Link>.</li>
       </ul>
 
       <ArticleCTA text="Расскажите, какая доска нужна — размеры и рисунок, посчитаем стоимость и срок. Изготовим из массива дуба в мастерской в Крупках и отправим в любой город Беларуси." />
