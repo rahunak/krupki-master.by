@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Чем пропитать доску из дуба: масло, воск и запреты | Крупки Мастер",
   description:
     "Чем пропитать доску из дуба: масло, воск или масло-воск? Первая обработка новой доски, периодичность обновления и главный запрет — посудомоечная машина.",
-  alternates: { canonical: "https://krupki-master.by/blog/uhod-za-doskoy-iz-duba" },
+  alternates: pageAlternates("/blog/uhod-za-doskoy-iz-duba/"),
   openGraph: {
     title: "Чем пропитать доску из дуба: масло, воск и запреты | Крупки Мастер",
     description:
@@ -107,7 +108,7 @@ export default function Post() {
 
       <h2>Менажница и разделочная: уход одинаков?</h2>
       <p>
-        Почти. На <Link href="/blog/chto-takoe-menazhnitsa" className="text-[#D97706] hover:underline">менажнице</Link>
+        Почти. На <Link href="/blog/chto-takoe-menazhnitsa/" className="text-[#D97706] hover:underline">менажнице</Link>
         не режут: она моется реже, зато нужно сберечь декоративную поверхность —
         не ставить горячее и не надолго оставлять солёное или мокрое.
         Разделочная доска, наоборот, живёт в контакте с ножом — ей важна точная

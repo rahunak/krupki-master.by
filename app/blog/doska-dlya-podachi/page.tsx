@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Доска для подачи: 5 расстановок (сырная, стейк, закуски) | Крупки Мастер",
   description:
     "5 рабочих расстановок на дубовой доске: сырная плато, стейк, закуски к вину, завтрак и праздничный стол. Какой размер доски нужен для подачи и почему дуб.",
-  alternates: { canonical: "https://krupki-master.by/blog/doska-dlya-podachi" },
+  alternates: pageAlternates("/blog/doska-dlya-podachi/"),
   openGraph: {
     title: "Доска для подачи: 5 расстановок (сырная, стейк, закуски) | Крупки Мастер",
     description:
@@ -51,7 +52,7 @@ export default function Post() {
         пять расстановок, которые собираются за 5–10 минут и работают на любом
         поводе. Если вы только разбираетесь, чем такая доска отличается от
         обычной, начните со статьи{" "}
-        <Link href="/blog/chto-takoe-menazhnitsa" className="text-[#D97706] hover:underline">
+        <Link href="/blog/chto-takoe-menazhnitsa/" className="text-[#D97706] hover:underline">
           «Что такое менажница»
         </Link>
         .
@@ -122,7 +123,7 @@ export default function Post() {
         <li><strong>Форма:</strong> прямоугольник с закруглёнными краями удобнее, чем овал — по нему проще «читать» композицию;</li>
         <li><strong>Поверхность:</strong> только масло и воск — краски не нужны;</li>
         <li><strong>Уход:</strong> мыть вручную, не замачивать — все правила в статье про{" "}
-          <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">уход за доской</Link>.</li>
+          <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">уход за доской</Link>.</li>
       </ul>
 
       <ArticleCTA text="Сделаем доску для подачи из массива дуба под ваш размер — с маслом и воском, срок 3–7 дней, доставка по Беларуси. Напишите нужные размеры." />

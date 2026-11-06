@@ -7,10 +7,50 @@ function makeOrderId(): string {
   return `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
 }
 
+/** Обрезает пользовательскую строку до разумной длины (защита от мусора) */
+function clean(value: unknown, max = 200): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed ? trimmed.slice(0, max) : undefined;
+}
+
+/**
+ * Простой лимит заявок по IP: не больше RATE_LIMIT_MAX за RATE_LIMIT_WINDOW_MS.
+ * Хранится в памяти процесса — этого достаточно, чтобы один бот не забил канал;
+ * за точным лимитом (общий счётчик) идти в Supabase/Redis не требуется.
+ */
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 3;
+const requestLog = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (requestLog.get(ip) ?? []).filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+
+  if (recent.length >= RATE_LIMIT_MAX) {
+    requestLog.set(ip, recent);
+    return true;
+  }
+
+  recent.push(now);
+  requestLog.set(ip, recent);
+
+  // Чистка старых записей, чтобы Map не рос бесконечно
+  if (requestLog.size > 1000) {
+    for (const [key, timestamps] of requestLog) {
+      if (timestamps.every((ts) => now - ts >= RATE_LIMIT_WINDOW_MS)) {
+        requestLog.delete(key);
+      }
+    }
+  }
+
+  return false;
+}
+
 /**
  * POST /api/telegram/notify — заявка с сайта уходит в Telegram-канал.
  *
- * Тело: { phone: string, contactMethod?: "viber" | "call" }
+ * Тело: { phone: string, service?: string, city?: string, contactMethod?: "viber" | "call" }
  *
  * Конфигурация (env):
  *  - TELEGRAM_BOT_TOKEN — токен бота;
@@ -24,14 +64,35 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Валидация: телефон обязателен (минимум 9 цифр — номер РБ без кода страны)
-    const { phone, contactMethod, productType, address, city, description } = body as {
-      phone?: string;
-      contactMethod?: "viber" | "call";
-      productType?: string;
-      address?: string;
-      city?: string;
-      description?: string;
-    };
+    const { phone, contactMethod, service, productType, address, city, description, website } =
+      body as {
+        phone?: string;
+        contactMethod?: "viber" | "call";
+        service?: string;
+        productType?: string;
+        address?: string;
+        city?: string;
+        description?: string;
+        /** Honeypot: скрытое поле, люди его не видят и не заполняют */
+        website?: string;
+      };
+
+    // Honeypot: отвечаем «успехом», чтобы бот не подбирал обход
+    if (typeof website === "string" && website.trim() !== "") {
+      return NextResponse.json({ success: true, message: "Notification sent to channel" });
+    }
+
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Слишком много заявок с этого адреса. Попробуйте через 10 минут или позвоните." },
+        { status: 429 }
+      );
+    }
 
     if (!phone || typeof phone !== "string" || phone.replace(/\D/g, "").length < 9) {
       return NextResponse.json(
@@ -54,12 +115,14 @@ export async function POST(request: NextRequest) {
 
     const order: OrderNotification = {
       orderId: makeOrderId(),
-      phone: phone.trim(),
-      contactMethod: contactMethod === "call" ? "call" : "viber",
-      productType: typeof productType === "string" ? productType.trim() : undefined,
-      address: typeof address === "string" ? address.trim() : undefined,
-      city: typeof city === "string" ? city.trim() : undefined,
-      description: typeof description === "string" ? description.trim() : undefined,
+      phone: phone.trim().slice(0, 30),
+      contactMethod:
+        contactMethod === "call" || contactMethod === "viber" ? contactMethod : undefined,
+      service: clean(service),
+      productType: clean(productType),
+      address: clean(address, 300),
+      city: clean(city, 80),
+      description: clean(description, 1000),
       createdAt: new Date().toISOString(),
     };
 
@@ -83,13 +146,14 @@ export async function POST(request: NextRequest) {
 
     if (!result.success) {
       console.error("Telegram notification errors:", result.errors);
+      // 502, а не 207: для формы это ошибка, клиент не должен показывать успех
       return NextResponse.json(
         {
           success: false,
-          message: "Some notifications failed to send",
+          message: "Failed to deliver the request",
           errors: result.errors,
         },
-        { status: 207 } // Multi-Status
+        { status: 502 }
       );
     }
 

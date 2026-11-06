@@ -1,32 +1,35 @@
 import Image from "next/image";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 import SectionLabel from "./SectionLabel";
+import { PHONE_NUMBER } from "@/data/contacts";
 
+/**
+ * Первый экран главной (SDD 4.1, 7.3): заказ конкретных услуг с выездом,
+ * а не «мастер на все руки» и не мастерская. Телефон — первое действие.
+ * Заточка и дерево живут на отдельных страницах (/zatochka/, /doski/).
+ */
 export default function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
       className="relative min-h-screen flex flex-col justify-center pt-16"
     >
-      {/* Background layers */}
       <div className="absolute inset-0 bg-[#0C0C0E]">
         <Image
-          src="/hero.webp"
-          alt="Кузнечные инструменты и нож на тёмном фоне"
+          src="/hero-uslugi.webp"
+          alt="Инструмент для электромонтажа и отделочных работ"
           fill
           priority
           className="object-cover opacity-[0.14] mix-blend-luminosity"
           sizes="100vw"
         />
-        {/* Gradient masks */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C0C0E] via-[#0C0C0E]/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0E] via-[#0C0C0E]/10 to-[#0C0C0E]/60" />
-        {/* Amber atmospheric glow */}
         <div className="absolute top-1/2 -translate-y-1/2 left-[15%] w-[600px] h-[400px] rounded-full bg-[#D97706]/[0.035] blur-[80px]" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0C0C0E] to-transparent" />
       </div>
 
-      {/* Decorative vertical rule */}
       <div className="absolute left-5 md:left-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-3">
         <span className="w-px h-16 bg-gradient-to-b from-transparent to-[#D97706]/40" />
         <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]/60" />
@@ -34,41 +37,49 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-5 w-full py-24 md:py-28 lg:py-32">
-        <div className="max-w-[680px]">
-          <SectionLabel>Мастерская · Крупки, Минская обл.</SectionLabel>
+        <div className="max-w-[720px]">
+          <SectionLabel>Крупки и район · выезд на объект</SectionLabel>
           <h1
             id="hero-heading"
-            className="text-[2.6rem] md:text-5xl lg:text-[3.4rem] font-extrabold text-[#EDE8E0] leading-[1.07] tracking-[-0.02em] mb-6"
-          >Профессиональная ручная заточка ножей, цепей и режущего инструмента</h1>
-          <p className="text-[17px] md:text-lg text-[#6E7886] leading-relaxed mb-10 max-w-lg">Точим кухонные, охотничьи ножи, цепи бензопил, столярный и садовый инструмент. Доставка по всей Беларуси.</p>
+            className="text-[2.4rem] md:text-5xl lg:text-[3.3rem] font-extrabold text-[#EDE8E0] leading-[1.07] tracking-[-0.02em] mb-6"
+          >
+            Электрика, штукатурка и отделка в Крупках — цена до начала работ
+          </h1>
+          <p className="text-[17px] md:text-lg text-[#6E7886] leading-relaxed mb-10 max-w-xl">
+            Мастер приедет на объект, оценит объём и назовёт стоимость.
+            Работаем по этапам, без предоплаты и обязательного пакета — можно
+            заказать только то, что нужно.
+          </p>
 
-
-
-          <div className="flex flex-col sm:flex-row gap-3 mb-14">
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <a
-              href="#order"
-              className="inline-flex items-center justify-center gap-2 bg-[#D97706] text-[#0A0A0B] font-bold text-base px-7 py-4 rounded-[2px] hover:bg-[#F59E0B] active:scale-[0.98] transition-all duration-150 group"
+              href={`tel:${PHONE_NUMBER}`}
+              className="inline-flex items-center justify-center gap-2 bg-[#D97706] text-[#0A0A0B] font-bold text-base px-7 py-4 rounded-[2px] hover:bg-[#F59E0B] active:scale-[0.98] transition-all duration-150"
             >
-              Рассчитать стоимость
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+              <Phone size={17} aria-hidden="true" />
+              +375 (25) 781-09-98
             </a>
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 border border-white/[0.12] text-[#C8C2BA] font-medium text-base px-7 py-4 rounded-[2px] hover:border-white/25 hover:text-[#EDE8E0] hover:bg-white/[0.03] transition-all duration-200"
+            <Link
+              href="/uslugi/"
+              className="inline-flex items-center justify-center gap-2 border border-white/[0.12] text-[#C8C2BA] font-medium text-base px-7 py-4 rounded-[2px] hover:border-white/25 hover:text-[#EDE8E0] hover:bg-white/[0.03] transition-all duration-200 group"
             >
-              Смотреть цены
-            </a>
+              Услуги и цены
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform duration-200"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
 
-          {/* Trust strip */}
           <div className="flex flex-wrap gap-x-8 gap-y-3 pt-10 border-t border-white/[0.07]">
             {[
-              { label: "Опыт 10+ лет" },
-              { label: "Доставка по всей Беларуси" },
-              { label: "Ответ за 2 часа" },
+              { label: "4 города + 50 км" },
+              { label: "Электрика и сантехника — сам мастер" },
+              { label: "Замер и расчёт — бесплатно" },
             ].map(({ label }) => (
               <span key={label} className="flex items-center gap-2 text-[13px] text-[#555560]">
-                <span className="w-1 h-1 rounded-full bg-[#D97706]" />
+                <span className="w-1 h-1 rounded-full bg-[#D97706]" aria-hidden="true" />
                 {label}
               </span>
             ))}
@@ -76,14 +87,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll cue */}
       <a
-        href="#delivery"
-        aria-label="Перейти ниже"
+        href="#services"
+        aria-label="Перейти к услугам"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[#333337] hover:text-[#D97706] transition-colors duration-200"
       >
         <span className="text-[10px] font-mono tracking-widest uppercase">Далее</span>
-        <ChevronDown size={16} />
+        <ChevronDown size={16} aria-hidden="true" />
       </a>
     </section>
   );

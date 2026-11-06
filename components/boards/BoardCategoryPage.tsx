@@ -92,7 +92,7 @@ export default function BoardCategoryPage(props: BoardPageProps) {
       "@type": "LocalBusiness",
       name: "Крупки Мастер",
       url: SITE_URL,
-      telephone: "+375333123386",
+      telephone: "+375257810998",
       address: {
         "@type": "PostalAddress",
         addressCountry: "BY",

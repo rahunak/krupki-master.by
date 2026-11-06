@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Торцевая разделочная доска: что это, чем отличается и почему дороже | Крупки Мастер",
   description:
     "Чем end grain отличается от обычной ламинированной доски: строение древесины, затягивание следов ножа, срок службы. Почему дороже и где заказать в РБ.",
-  alternates: { canonical: "https://krupki-master.by/blog/tortsevaya-razdelochnaya-doska" },
+  alternates: pageAlternates("/blog/tortsevaya-razdelochnaya-doska/"),
   openGraph: {
     title: "Торцевая разделочная доска: что это, чем отличается и почему дороже | Крупки Мастер",
     description:
@@ -107,7 +108,7 @@ export default function Post() {
       <p>
         Уход такой же, как за любой доской из массива: мыть вручную, не
         замачивать, не класть в посудомойку, раз в 2–3 месяца — обработка
-        <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline"> маслом и воском</Link>.
+        <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline"> маслом и воском</Link>.
         Один нюанс: торцевые доски «пьют» масло быстрее — поверхность больше
         открыта, поэтому первую пропитку делают в 2–3 слоя.
       </p>
@@ -115,7 +116,7 @@ export default function Post() {
       <h2>Кому торцевая доска действительно нужна</h2>
       <ul>
         <li><strong>Тем, кто готовит ножом каждый день</strong> — и устал менять доски;</li>
-        <li><strong>Тем, у кого дорогие ножи</strong> — клинок на торцевой древесине дольше остаётся острым (мы уже писали об <Link href="/blog/ugol-zatochki-nozha" className="text-[#D97706] hover:underline">углах заточки</Link>);</li>
+        <li><strong>Тем, у кого дорогие ножи</strong> — клинок на торцевой древесине дольше остаётся острым (мы уже писали об <Link href="/blog/ugol-zatochki-nozha/" className="text-[#D97706] hover:underline">углах заточки</Link>);</li>
         <li><strong>Тем, кто хочет одну доску на 10+ лет</strong> и готов за ней ухаживать;</li>
         <li><strong>Как подарок</strong>: торцевой блок из дуба — уместный презент к набору ножей. Если ищете именно подарок — посмотрите <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline">менажницы из дуба</Link> и <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline">разделочные доски под заказ</Link>.</li>
       </ul>

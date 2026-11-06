@@ -17,32 +17,15 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { PUBLIC_ROUTES } from "@/data/routes";
 
 const SITE_URL = "https://krupki-master.by";
 const INDEXNOW_KEY = "8be2a9a1aced14dc3c8d1d3b65e50aa0";
 // api.indexnow.org — балансировщик; Яндекс/Bing получат сами.
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow";
 
-// TEMP-GIFT: /doski/podarochnye_nabory временно исключён (нет товара/фото)
-const SITEMAP_URLS = [
-  SITE_URL,
-  `${SITE_URL}/doski/`,
-  `${SITE_URL}/doski/razdelochnye/`,
-  `${SITE_URL}/doski/menazhnitsy/`,
-  `${SITE_URL}/blog`,
-  `${SITE_URL}/blog/zatochka-cepi-benzopily`,
-  `${SITE_URL}/blog/ugol-zatochki-nozha`,
-  `${SITE_URL}/blog/ruchnaya-ili-mashinnaya-zatochka`,
-  `${SITE_URL}/blog/kak-otpravit-instrument-belpochtoy`,
-  `${SITE_URL}/blog/skolko-stoit-zatochka`,
-  `${SITE_URL}/blog/chto-takoe-menazhnitsa`,
-  `${SITE_URL}/blog/doska-dlya-podachi`,
-  `${SITE_URL}/blog/kak-delayut-dosku-pod-zakaz`,
-  `${SITE_URL}/blog/kak-vybrat-razdelochnuyu-dosku`,
-  `${SITE_URL}/blog/menazhnitsa-podarok`,
-  `${SITE_URL}/blog/tortsevaya-razdelochnaya-doska`,
-  `${SITE_URL}/blog/uhod-za-doskoy-iz-duba`,
-];
+// Единый список публичных URL (data/routes.ts) — тот же, что у sitemap.xml.
+const SITEMAP_URLS = PUBLIC_ROUTES.map((route) => `${SITE_URL}${route.path}`);
 
 export async function POST(req: NextRequest) {
   let urls: string[] = SITEMAP_URLS;

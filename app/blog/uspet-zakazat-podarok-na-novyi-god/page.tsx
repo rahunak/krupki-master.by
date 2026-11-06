@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Успеть к Новому году: когда заказывать доску и менажницу в подарок | Крупки Мастер",
   description:
     "Сроки изготовления (3–7 дней) и доставки почтой (1–3 дня) к Новому году: до какой даты заказывать разделочную доску или менажницу, чтобы подарок приехал к празднику. Оплата наложенным платежом.",
-  alternates: { canonical: "https://krupki-master.by/blog/uspet-zakazat-podarok-na-novyi-god" },
+  alternates: pageAlternates("/blog/uspet-zakazat-podarok-na-novyi-god/"),
   openGraph: {
     title: "Успеть к Новому году: когда заказывать доску и менажницу | Крупки Мастер",
     description:
@@ -118,7 +119,7 @@ export default function Post() {
       <h2>Что заказать</h2>
       <p>
         Сценарии «кому и что дарить» — в{" "}
-        <Link href="/blog/chto-podarit-na-novyi-god" className="text-[#D97706] hover:underline">
+        <Link href="/blog/chto-podarit-na-novyi-god/" className="text-[#D97706] hover:underline">
           статье про подарки на Новый год
         </Link>. Каталог с ценами:{" "}
         <Link href="/doski/razdelochnye/" className="text-[#D97706] hover:underline">

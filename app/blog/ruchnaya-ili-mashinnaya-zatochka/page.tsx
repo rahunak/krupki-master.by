@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Ручная или машинная заточка ножей: что выбрать в 2026 | Крупки Мастер",
   description:
     "Машинная за 3 BYN в торговом центре или ручная за 10–20 у мастера: цена перегрева металла и одинакового угла. Когда дешёвая заточка честно достаточна.",
-  alternates: { canonical: "https://krupki-master.by/blog/ruchnaya-ili-mashinnaya-zatochka" },
+  alternates: pageAlternates("/blog/ruchnaya-ili-mashinnaya-zatochka/"),
 };
 
 const META: ArticleMeta = {
@@ -94,7 +95,7 @@ export default function Post() {
         принимаем инструмент почтой из любого города Беларуси. А ещё делаем кухонные
         изделия из дуба — <Link href="/doski/" className="text-[#D97706] hover:underline">смотреть изделия</Link>. А почему на
         дубовой доске лезвие тупится медленнее — в статье{" "}
-        <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
+        <Link href="/blog/tortsevaya-razdelochnaya-doska/" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
       </p>
     </ArticleLayout>
   );

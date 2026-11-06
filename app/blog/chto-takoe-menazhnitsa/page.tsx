@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Менажница из дуба: доска для подачи сыра и закусок | Крупки Мастер",
   description:
     "Менажница — доска для подачи из дуба: сыр, мясо и закуски в одной подаче. Чем она отличается от разделочной доски и блюда с перегородками на столе.",
-  alternates: { canonical: "https://krupki-master.by/blog/chto-takoe-menazhnitsa" },
+  alternates: pageAlternates("/blog/chto-takoe-menazhnitsa/"),
   openGraph: {
     title: "Менажница из дуба: доска для подачи сыра и закусок | Крупки Мастер",
     description:
@@ -72,7 +73,7 @@ export default function Post() {
         Хорошая менажница — это сервировочная доска, которая заменяет несколько
         тарелок и мисок одной композицией. Сыр, мясная нарезка, овощи и орехи
         смотрятся на дубе наряднее, чем вперемешку в тарелках. Как всё расставить —
-        отдельный гайд: <Link href="/blog/doska-dlya-podachi" className="text-[#D97706] hover:underline">5 расстановок для подачи на доске</Link>.
+        отдельный гайд: <Link href="/blog/doska-dlya-podachi/" className="text-[#D97706] hover:underline">5 расстановок для подачи на доске</Link>.
       </p>
 
       <h2>Для чего используют менажницу</h2>
@@ -108,7 +109,7 @@ export default function Post() {
         2–3 месяца — пропитка маслом (подойдёт вазелиновое из аптеки): дерево
         восстановит водоотталкивающие свойства. Не мыть в посудомойке —
         горячая вода и моющие средства сушат и «ведут» массив. Полный гайд с маслом,
-        воском и запретами — в статье <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">об уходе за доской из дуба</Link>.
+        воском и запретами — в статье <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">об уходе за доской из дуба</Link>.
       </p>
 
       <h2>Лайфхак: одна менажница — три сценария</h2>
@@ -118,7 +119,7 @@ export default function Post() {
         покупка как <Link href="/doski/" className="text-[#D97706] hover:underline">подарок на новоселье</Link> —
         к новой кухне нужна и новая доска для подачи. Сценарии для новоселья, свадьбы
         и юбилея, а также что приложить к подарку — в статье{" "}
-        <Link href="/blog/menazhnitsa-podarok" className="text-[#D97706] hover:underline">«Менажница как подарок»</Link>. По цене и срокам
+        <Link href="/blog/menazhnitsa-podarok/" className="text-[#D97706] hover:underline">«Менажница как подарок»</Link>. По цене и срокам
         смотрите <Link href="/doski/menazhnitsy/" className="text-[#D97706] hover:underline">каталог менажниц из дуба</Link> —
         классические и с соусниками, изготовление 3–7 дней, доставка по Беларуси.
       </p>

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Как делают доску под заказ: этапы от лога до готовой доски | Крупки Мастер",
   description:
     "Доска под заказ в 7 этапов мастерской: отбор дуба, раскрой на ламели, склейка, шлифовка, масло и воск, упаковка. Почему самому делать дольше и дороже.",
-  alternates: { canonical: "https://krupki-master.by/blog/kak-delayut-dosku-pod-zakaz" },
+  alternates: pageAlternates("/blog/kak-delayut-dosku-pod-zakaz/"),
   openGraph: {
     title: "Как делают доску под заказ: этапы от лога до готовой доски | Крупки Мастер",
     description:
@@ -72,7 +73,7 @@ export default function Post() {
       <h2>3. Склеивание и пресс</h2>
       <p>
         Ламели собирают в блок (рисунок для «шахматки» — с поворотом на 90°,
-        как в статье про <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">торцевые доски</Link>)
+        как в статье про <Link href="/blog/tortsevaya-razdelochnaya-doska/" className="text-[#D97706] hover:underline">торцевые доски</Link>)
         и зажимают в струбцинах. Клей контактирует с продуктами — берём
         сертифицированный D3/D4: после полимеризации он безопасен для
         продуктов и не боится влаги. Пресс держит блок 12–24 часа.
@@ -90,7 +91,7 @@ export default function Post() {
         Первый слой минерального масла уходит в открытые поры, второй —
         пропитывает, финишный слой — масло-воск, запечатывающий поверхность.
         Этого хватает на месяцы; как обновить — по шагам написано в{" "}
-        <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">
+        <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">
           гайде по уходу
         </Link>
         .

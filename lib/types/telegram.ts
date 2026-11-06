@@ -24,8 +24,10 @@ export interface OrderNotification {
   phone: string;
   city?: string;
   description?: string;
-  /** Канал связи, который выбрал клиент в форме: viber (по умолчанию) | call */
+  /** Канал связи (legacy): новые заявки его не передают, мастер уточняет звонком */
   contactMethod?: "viber" | "call";
+  /** Услуга мастерская/бытовые услуги (для заявок с /uslugi/* и /zatochka/*) */
+  service?: string;
   /** Адрес доставки (для заказов изделий из дерева) */
   address?: string;
   /** Тип изделия (для заказов изделий из дерева) */

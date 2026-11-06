@@ -3,9 +3,21 @@ import type { OrderNotification, TelegramMessage, TelegramResponse } from "./typ
 const TELEGRAM_API_BASE = "https://api.telegram.org/bot";
 
 /**
+ * Экранирует пользовательские значения перед подстановкой в HTML-разметку
+ * Telegram (parse_mode: "HTML"). Без этого символы <, > и & из полей формы
+ * ломают сообщение, а заодно позволяют подменить текст заявки.
+ */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/**
  * Форматирует данные заявки в сообщение для Telegram-канала.
- * Форма упрощена до телефона + канала связи (Viber/звонок) —
- * остальные поля (имя/город/описание) опциональны для обратной совместимости.
+ * Форма упрощена до услуги, города (опционально) и телефона.
+ * Остальные поля (имя/канал связи/описание) опциональны для обратной совместимости.
  */
 export function formatOrderMessage(order: OrderNotification): string {
   const date = new Date(order.createdAt).toLocaleString("ru-RU", {
@@ -23,23 +35,29 @@ export function formatOrderMessage(order: OrderNotification): string {
         ? "💜 Написать в Viber"
         : null;
 
-  let message = `🔔 <b>Новая заявка на заточку</b>\n\n`;
-  message += `📱 <b>Телефон:</b> ${order.phone}\n`;
+  // Заявки приходят с трёх направлений (услуги, мастерская, изделия из дерева),
+  // поэтому заголовок нейтральный, а тип работ виден по полям ниже.
+  let message = `🔔 <b>Новая заявка с сайта</b>\n\n`;
+  message += `📱 <b>Телефон:</b> ${escapeHtml(order.phone)}\n`;
+
+  if (order.service) {
+    message += `🛠 <b>Услуга:</b> ${escapeHtml(order.service)}\n`;
+  }
 
   if (order.name) {
-    message += `👤 <b>Имя:</b> ${order.name}\n`;
+    message += `👤 <b>Имя:</b> ${escapeHtml(order.name)}\n`;
   }
 
   if (order.city) {
-    message += `🏙 <b>Город:</b> ${order.city}\n`;
+    message += `🏙 <b>Город:</b> ${escapeHtml(order.city)}\n`;
   }
 
   if (order.productType) {
-    message += `🪵 <b>Изделие:</b> ${order.productType}\n`;
+    message += `🪵 <b>Изделие:</b> ${escapeHtml(order.productType)}\n`;
   }
 
   if (order.address) {
-    message += `📦 <b>Адрес доставки:</b> ${order.address}\n`;
+    message += `📦 <b>Адрес доставки:</b> ${escapeHtml(order.address)}\n`;
   }
 
   if (methodLabel) {
@@ -47,7 +65,7 @@ export function formatOrderMessage(order: OrderNotification): string {
   }
 
   if (order.description) {
-    message += `\n📋 <b>Описание:</b>\n${order.description}\n`;
+    message += `\n📋 <b>Описание:</b>\n${escapeHtml(order.description)}\n`;
   }
 
   message += `\n⏰ <b>Дата:</b> ${date}\n`;

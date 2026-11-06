@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Что подарить на Новый год: 5 идей с дубовой доской и менажницей | Крупки Мастер",
   description:
     "Практичные подарки на Новый год: кому дарить разделочную доску, менажницу, доску-слайс. Сценарии для родителей, коллеги и тех, кто любит готовить. Сроки и доставка по Беларуси.",
-  alternates: { canonical: "https://krupki-master.by/blog/chto-podarit-na-novyi-god" },
+  alternates: pageAlternates("/blog/chto-podarit-na-novyi-god/"),
   openGraph: {
     title: "Что подарить на Новый год: 5 идей с доской и менажницей | Крупки Мастер",
     description:
@@ -68,7 +69,7 @@ export default function Post() {
         подают, а не нарезают. Сыр, нарезка, мандарины, закуски к горячему — на
         Новый год это самый «стольный» подарок, потому что он в первый же вечер
         уходит в работу. Кому она подходит по поводам — разобрали отдельно в{" "}
-        <Link href="/blog/menazhnitsa-podarok" className="text-[#D97706] hover:underline">
+        <Link href="/blog/menazhnitsa-podarok/" className="text-[#D97706] hover:underline">
           статье про менажницу как подарок
         </Link>.
       </p>
@@ -95,7 +96,7 @@ export default function Post() {
       <p>
         Человеку, который сам собирает сырные плато, не нужен «ещё один
         сувенир». Мы собрали пять расстановок для{" "}
-        <Link href="/blog/doska-dlya-podachi" className="text-[#D97706] hover:underline">
+        <Link href="/blog/doska-dlya-podachi/" className="text-[#D97706] hover:underline">
           подачи на доске
         </Link>
         ; для новогоднего стола из них работают сырная плато и закуски к
@@ -107,7 +108,7 @@ export default function Post() {
         Дуб не задирается от ножа, при правильном уходе не пересыхает и не
         впитывает запахи. Обслуживание сводится к одному: раз в 2–3 месяца
         пропитать маслом — расписали по шагам в{" "}
-        <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">
+        <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">
           статье про масло и воск
         </Link>. Каждое изделие мастер проверяет перед отправкой, при
         производственном дефекте — замена за наш счёт.
@@ -122,7 +123,7 @@ export default function Post() {
         Подарок к праздничному столу лучше заказывать в первой половине
         декабря — дедлайны по городам посчитали в{" "}
         <Link
-          href="/blog/uspet-zakazat-podarok-na-novyi-god"
+          href="/blog/uspet-zakazat-podarok-na-novyi-god/"
           className="text-[#D97706] hover:underline"
         >
           статье про сроки заказа

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Менажница как подарок: 7 сценариев на новоселье, свадьбу и праздник | Крупки Мастер",
   description:
     "7 поводов подарить менажницу: новоселье, свадьба, юбилей, 8 марта, Новый год. Как выбрать менажницу из дуба в подарок и что приложить к нему.",
-  alternates: { canonical: "https://krupki-master.by/blog/menazhnitsa-podarok" },
+  alternates: pageAlternates("/blog/menazhnitsa-podarok/"),
   openGraph: {
     title: "Менажница как подарок: 7 сценариев на новоселье, свадьбу и праздник | Крупки Мастер",
     description:
@@ -45,7 +46,7 @@ export default function Post() {
   return (
     <ArticleLayout meta={META}>
       <p>
-        <Link href="/blog/chto-takoe-menazhnitsa" className="text-[#D97706] hover:underline">
+        <Link href="/blog/chto-takoe-menazhnitsa/" className="text-[#D97706] hover:underline">
           Менажница
         </Link>{" "}
         — один из немногих подарков, который соединяет три качества: он
@@ -92,7 +93,7 @@ export default function Post() {
         2–3 идеями подачи (сыр-мёд-орехи, брускетты, фрукты). Так человек сразу
         понимает, как пользоваться доской — и подарок «заработает» в первый же
         вечер. Лайфхак-инструкция по уходу уже есть у нас:{" "}
-        <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">масло и воск</Link>.
+        <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">масло и воск</Link>.
       </p>
 
       <h2>Где заказать</h2>

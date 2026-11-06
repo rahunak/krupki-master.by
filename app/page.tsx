@@ -1,12 +1,69 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Header from "@/components/header/Header";
 import Hero from "@/components/sections/Hero";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Pricing from "@/components/sections/Pricing";
-import OrderForm from "@/components/sections/OrderForm";
-import { FAQ } from "@/components/sections/FAQ";
 import Footer from "@/components/footer/Footer";
 import MobileCTA from "@/components/sections/MobileCTA";
+import ServiceCard from "@/components/services/ServiceCard";
+import FAQBlock from "@/components/services/FAQBlock";
+import ServiceForm from "@/components/services/ServiceForm";
+import ServiceZone from "@/components/services/ServiceZone";
+import { SERVICE_CITIES, SERVICE_LIST } from "@/data/services";
+import { SITE_URL } from "@/data/contacts";
+import { pageAlternates } from "@/lib/seo";
 
+/**
+ * Главная (SDD 4.1, 7.3, T-20).
+ * Главный экран продаёт заказ конкретных услуг: электрика, штукатурка,
+ * отделка. Мастерская (заточка, дерево) живёт на отдельных страницах
+ * /zatochka/ и /doski/ и на главной не дублируется.
+ */
+export const metadata: Metadata = {
+  title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка | krupki-master.by",
+  description:
+    "Электрика, штукатурка и отделка в Крупках и 50 км. Мастер приедет на объект и назовёт цену до начала работ. Без предоплаты.",
+  alternates: pageAlternates("/"),
+  openGraph: {
+    title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка",
+    description:
+      "Электрика, штукатурка и отделка. Мастер приедет на объект и назовёт цену до начала работ. Крупки, Борисов, Толочин, Новолукомль.",
+    url: SITE_URL,
+    siteName: "Krupki Master",
+    locale: "ru_BY",
+    type: "website",
+    images: [{ url: `${SITE_URL}/og_image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка",
+    description: "Электрика, штукатурка и отделка в Крупках. Цена до начала работ, без предоплаты.",
+    images: [`${SITE_URL}/og_image.png`],
+  },
+};
+
+const HOME_FAQ = [
+  {
+    q: "Куда вы выезжаете?",
+    a: "Крупки, Борисов, Толочин, Новолукомль и населённые пункты в радиусе 50 км от Крупок. Выезд на замер и оценку объёма работ.",
+  },
+  {
+    q: "Сколько стоит работа?",
+    a: "Стоимость называем после замера: она зависит от объёма, состояния основания и материалов. Цены «от» на страницах услуг — ориентир, а не смета.",
+  },
+  {
+    q: "Кто выполняет работы?",
+    a: "Электрику и сантехнику выполняет мастер. На ремонт, демонтаж и декоративную штукатурку привлекаются подрядчики — договорённость подтверждается до начала работ.",
+  },
+  {
+    q: "Делаете ли ремонт под ключ?",
+    a: "Нет. Бригады нет, поэтому ремонт под ключ с фиксированной ценой и сроком мы не обещаем. Работаем по этапам: каждый этап согласовывается и принимается отдельно.",
+  },
+  {
+    q: "Можно ли заказать только одну услугу?",
+    a: "Да. Отдельно электрика, отдельно штукатурка, отдельно отделочные работы — обычный сценарий, если остальное делаете сами или другая бригада.",
+  },
+];
 
 export default function Home() {
   return (
@@ -16,28 +73,71 @@ export default function Home() {
       <main>
         <Hero />
 
-        <section id="services" className="py-10 px-5 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Что мы точим</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <article className="p-6 border border-white/[0.08] rounded-lg bg-white/[0.02]">
-              <h3 className="text-xl font-semibold mb-3 text-[#F59E0B]">Заточка ножей</h3>
-              <p className="text-[#7A8494]">Кухонные, охотничьи, туристические ножи, ножи для мясорубок.</p>
-            </article>
-            <article className="p-6 border border-white/[0.08] rounded-lg bg-white/[0.02]">
-              <h3 className="text-xl font-semibold mb-3 text-[#F59E0B]">Заточка цепей бензопил</h3>
-              <p className="text-[#7A8494]">Цепи для бензопил (Stihl, Husqvarna, Partner и др.).</p>
-            </article>
-            <article className="p-6 border border-white/[0.08] rounded-lg bg-white/[0.02]">
-              <h3 className="text-xl font-semibold mb-3 text-[#F59E0B]">Садовый и столярный инструмент</h3>
-              <p className="text-[#7A8494]">Топоры, секаторы, стамески, ножницы, ножи рубанка.</p>
-            </article>
+        {/* Услуги — основное направление главной */}
+        <section id="services" className="py-14 border-t border-white/[0.06]">
+          <div className="max-w-6xl mx-auto px-5">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-9">
+              <div>
+                <p className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-[#D97706] mb-3">
+                  Услуги с выездом
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                  Что можно заказать
+                </h2>
+              </div>
+              <p className="text-[#555560] text-sm leading-relaxed md:text-right max-w-[260px]">
+                Можно заказать одну услугу или несколько.
+                <br />
+                Цену называем после замера.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {SERVICE_LIST.map((s) => (
+                <ServiceCard
+                  key={s.slug}
+                  href={s.path}
+                  name={s.serviceName}
+                  description={s.lead}
+                  priceFrom={s.prices[0]?.priceFrom ?? null}
+                  priceUnit={s.prices[0]?.unit}
+                />
+              ))}
+            </div>
+
+            <div className="mt-6">
+              <Link
+                href="/uslugi/"
+                className="inline-flex items-center gap-2 text-[#D97706] text-sm hover:text-[#F59E0B] transition-colors"
+              >
+                Все услуги и условия
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </section>
 
-        <HowItWorks />
-        <Pricing />
-        <FAQ />
-        <OrderForm />
+        <div className="max-w-6xl mx-auto px-5 py-6">
+          <ServiceZone />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-5">
+          <FAQBlock items={HOME_FAQ} pageUrl={SITE_URL} />
+
+          <ServiceForm
+            serviceOptions={[
+              "Электрика",
+              "Сантехника",
+              "Декоративная штукатурка",
+              "Отделочные работы",
+              "Другое",
+            ]}
+            cities={SERVICE_CITIES}
+            heading="Оставить заявку"
+            note="Оставьте телефон — мастер свяжется в течение 2 часов, уточнит детали и назовёт цену. Без предоплаты до замера."
+            formId="home"
+          />
+        </div>
       </main>
 
       <Footer />

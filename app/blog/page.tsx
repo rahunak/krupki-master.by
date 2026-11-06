@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import { pageAlternates } from "@/lib/seo";
 
 const SITE_URL = "https://krupki-master.by";
 
@@ -92,11 +93,49 @@ const POSTS = [
   },
 ];
 
+/**
+ * Категоризация блога по направлениям (SDD 2.5, T-31).
+ * URL статей не меняются — размечаем только принадлежность к направлению,
+ * чтобы «уход за доской» и «угол заточки» не сваливались в одну кучу.
+ */
+const WOOD_SLUGS = new Set([
+  "chto-podarit-na-novyi-god",
+  "uspet-zakazat-podarok-na-novyi-god",
+  "doska-dlya-podachi",
+  "kak-delayut-dosku-pod-zakaz",
+  "kak-vybrat-razdelochnuyu-dosku",
+  "menazhnitsa-podarok",
+  "tortsevaya-razdelochnaya-doska",
+  "uhod-za-doskoy-iz-duba",
+  "chto-takoe-menazhnitsa",
+]);
+
+const CATEGORIES = [
+  {
+    id: "wood",
+    title: "Дерево и посуда",
+    note: "Доски, менажницы, уход и выбор изделий из дуба.",
+    slugs: WOOD_SLUGS,
+    href: "/doski/",
+    hrefLabel: "Изделия из дерева",
+  },
+  {
+    id: "sharpening",
+    title: "Заточка",
+    note: "Углы, цепи бензопил, цены и отправка инструмента почтой.",
+    slugs: new Set(
+      POSTS.map((p) => p.slug).filter((s) => !WOOD_SLUGS.has(s))
+    ),
+    href: "/zatochka/",
+    hrefLabel: "Мастерская: заточка",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Блог о заточке и деревянных изделиях | Крупки Мастер",
   description:
     "Статьи о заточке цепей бензопил и ножей, углах заточки, ценах в Беларуси — и о деревянных изделиях: что такое менажница, какую доску выбрать.",
-  alternates: { canonical: "https://krupki-master.by/blog" },
+  alternates: pageAlternates("/blog/"),
   openGraph: {
     title: "Блог о заточке и деревянных изделиях | Крупки Мастер",
     description:
@@ -137,20 +176,59 @@ export default function BlogIndex() {
           разделочную доску выбрать.
         </p>
 
-        <ul className="space-y-4">
-          {POSTS.map((p) => (
-            <li key={p.slug}>
-              <Link
-                href={`/blog/${p.slug}`}
-                className="block border border-white/[0.07] bg-white/[0.02] rounded-[3px] p-6 hover:border-[#D97706]/40 transition-colors"
-              >
-                <h2 className="text-lg font-semibold text-[#EDE8E0] mb-2">{p.title}</h2>
-                <p className="text-[#6E7886] text-sm leading-relaxed">{p.excerpt}</p>
-                <span className="inline-block mt-3 text-[#D97706] text-sm">Читать →</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {CATEGORIES.map((cat) => {
+          const posts = POSTS.filter((p) => cat.slugs.has(p.slug));
+          if (posts.length === 0) return null;
+          return (
+            <section key={cat.id} aria-labelledby={`cat-${cat.id}`} className="mb-14">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-5">
+                <h2
+                  id={`cat-${cat.id}`}
+                  className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-[#D97706]"
+                >
+                  {cat.title} · {posts.length}
+                </h2>
+                <Link
+                  href={cat.href}
+                  className="text-[#8B94A3] text-sm hover:text-[#D97706] transition-colors"
+                >
+                  {cat.hrefLabel} →
+                </Link>
+              </div>
+              <p className="text-[#555560] text-sm mb-5">{cat.note}</p>
+              <ul className="space-y-4">
+                {posts.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={`/blog/${p.slug}/`}
+                      className="block border border-white/[0.07] bg-white/[0.02] rounded-[3px] p-6 hover:border-[#D97706]/40 transition-colors"
+                    >
+                      <h3 className="text-lg font-semibold text-[#EDE8E0] mb-2">{p.title}</h3>
+                      <p className="text-[#6E7886] text-sm leading-relaxed">{p.excerpt}</p>
+                      <span className="inline-block mt-3 text-[#D97706] text-sm">Читать →</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
+
+        <div className="border border-white/[0.07] bg-white/[0.02] rounded-[3px] p-6">
+          <p className="text-[#EDE8E0] font-semibold text-sm mb-2">
+            Что нужно по дому?
+          </p>
+          <p className="text-[#7A8494] text-sm leading-relaxed mb-4">
+            Электрика, декоративная штукатурка и отделочные работы — с выездом
+            на объект в Крупках, Борисове, Толочине и Новолукомле.
+          </p>
+          <Link
+            href="/uslugi/"
+            className="inline-flex items-center gap-2 text-[#D97706] text-sm hover:text-[#F59E0B] transition-colors"
+          >
+            Бытовые услуги →
+          </Link>
+        </div>
       </main>
       <Footer />
     </div>

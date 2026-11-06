@@ -6,6 +6,7 @@ import MobileCTA from "@/components/sections/MobileCTA";
 import BoardOrderForm from "@/components/sections/BoardOrderForm";
 import { BOARD_PAGES, PRODUCTS, GIFT_HIDDEN } from "@/data/boards";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/boards/Breadcrumbs";
+import { pageAlternates } from "@/lib/seo";
 
 const SITE_URL = "https://krupki-master.by";
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     "деревянные изделия ручной работы Минск",
     "Крупки Мастер доски",
   ],
-  alternates: { canonical: `${SITE_URL}/doski/` },
+  alternates: pageAlternates("/doski/"),
   openGraph: {
     title: "Изделия из дерева ручной работы на заказ | Krupki Master",
     description:
@@ -80,7 +81,7 @@ export default function DoskiPage() {
       "@type": "LocalBusiness",
       name: "Крупки Мастер",
       url: SITE_URL,
-      telephone: "+375333123386",
+      telephone: "+375257810998",
       address: {
         "@type": "PostalAddress",
         addressCountry: "BY",

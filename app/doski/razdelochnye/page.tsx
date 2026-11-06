@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BoardCategoryPage from "@/components/boards/BoardCategoryPage";
+import { pageAlternates } from "@/lib/seo";
 
 const SITE_URL = "https://krupki-master.by";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     "разделочная доска Гомель",
     "разделочная доска Брест",
   ],
-  alternates: { canonical: `${SITE_URL}/doski/razdelochnye/` },
+  alternates: pageAlternates("/doski/razdelochnye/"),
   openGraph: {
     title: "Разделочные доски из дуба ручной работы — купить с доставкой по Беларуси",
     description:

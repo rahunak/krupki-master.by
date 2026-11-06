@@ -100,7 +100,7 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
       <main className="pt-28 pb-24">
         <article className="max-w-3xl mx-auto px-5">
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex items-center gap-2 text-[#555560] text-sm hover:text-[#D97706] transition-colors mb-10"
           >
             <ArrowLeft size={14} aria-hidden="true" />

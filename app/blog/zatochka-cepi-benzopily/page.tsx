@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Заточка цепи бензопилы: цена, признаки затупления | Крупки Мастер",
   description:
     "Признаки тупой цепи: пыль вместо щепок, пила тянет в сторону, дым из реза. Болгарке — нет. Заточка от 9 BYN, приём цепей почтой по всей Беларуси.",
-  alternates: { canonical: "https://krupki-master.by/blog/zatochka-cepi-benzopily" },
+  alternates: pageAlternates("/blog/zatochka-cepi-benzopily/"),
 };
 
 const META: ArticleMeta = {

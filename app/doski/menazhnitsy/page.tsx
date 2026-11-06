@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BoardCategoryPage from "@/components/boards/BoardCategoryPage";
+import { pageAlternates } from "@/lib/seo";
 
 const SITE_URL = "https://krupki-master.by";
 
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     "доска для подачи сыра",
     "доска для подачи мяса",
   ],
-  alternates: { canonical: `${SITE_URL}/doski/menazhnitsy/` },
+  alternates: pageAlternates("/doski/menazhnitsy/"),
   openGraph: {
     title: "Менажница и сервировочная доска из дуба — заказать с доставкой по Беларуси",
     description:

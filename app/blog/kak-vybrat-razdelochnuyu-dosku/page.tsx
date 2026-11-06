@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleCTA, ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Разделочная доска: дуб против бамбука, пластика и стали | Крупки Мастер",
   description:
     "Чем доска из дуба выигрывает у бамбука, пластика и стали: срок службы, бережность к кромке ножей, безопасность. Сколько служит каждый из материалов.",
-  alternates: { canonical: "https://krupki-master.by/blog/kak-vybrat-razdelochnuyu-dosku" },
+  alternates: pageAlternates("/blog/kak-vybrat-razdelochnuyu-dosku/"),
   openGraph: {
     title: "Разделочная доска: дуб против бамбука, пластика и стали | Крупки Мастер",
     description:
@@ -95,7 +96,7 @@ export default function Post() {
       <p>
         плотный дуб при ударе ножа ведёт себя мягче бамбука и пластика: волокна
         немного пружинят, и лезвие меньше тупится. Если доску{" "}
-        <Link href="/blog/uhod-za-doskoy-iz-duba" className="text-[#D97706] hover:underline">
+        <Link href="/blog/uhod-za-doskoy-iz-duba/" className="text-[#D97706] hover:underline">
           пропитать маслом и воском
         </Link>
         , она безопасна для продуктов и служит десятилетие и дольше. В кухне
@@ -124,7 +125,7 @@ export default function Post() {
       <h2>Какая доска бережнее для ножей</h2>
       <p>
         От худшей к лучшей: сталь/камень → бамбук → пластик → массив дуба (а
-        идеал — <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">торцевая дубовая</Link>).
+        идеал — <Link href="/blog/tortsevaya-razdelochnaya-doska/" className="text-[#D97706] hover:underline">торцевая дубовая</Link>).
         На мягком массиве лезвие служит дольше всего.
       </p>
 
@@ -134,7 +135,7 @@ export default function Post() {
         <li><strong>Толщина:</strong> от 2–3 см — тонкие доски ведёт;</li>
         <li><strong>Размер:</strong> поверхность больше отрезка, который обычно режете;</li>
         <li><strong>Обработка:</strong> только масло и воск — никаких лака и морилки;</li>
-        <li><strong>Если доска нужна и гостям:</strong> красивая поверхность для подачи — это уже <Link href="/blog/chto-takoe-menazhnitsa" className="text-[#D97706] hover:underline">менажница</Link>.</li>
+        <li><strong>Если доска нужна и гостям:</strong> красивая поверхность для подачи — это уже <Link href="/blog/chto-takoe-menazhnitsa/" className="text-[#D97706] hover:underline">менажница</Link>.</li>
       </ul>
 
       <ArticleCTA text="Подберём доску из массива дуба под ваш размер и сценарий кухни (масло + воск, 3–7 дней на изготовление, доставка по Беларуси). Напишите нам, какой размер нужен." />

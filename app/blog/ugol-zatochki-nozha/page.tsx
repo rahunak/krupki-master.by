@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Угол заточки ножа: что меняет ошибка в пять градусов | Крупки Мастер",
   description:
     "Филировочному ножу нужно 10–15°, охотничьему — 25–30°. Что произойдёт при ошибке в 5 градусов и как мастерская держит угол по всей длине клинка.",
-  alternates: { canonical: "https://krupki-master.by/blog/ugol-zatochki-nozha" },
+  alternates: pageAlternates("/blog/ugol-zatochki-nozha/"),
 };
 
 const META: ArticleMeta = {
@@ -118,8 +119,8 @@ export default function Post() {
       <p>
         Какая поверхность дольше всего бережёт лезвие и почему на торцевом массиве
         клинок тупится медленнее — читайте в статьях{" "}
-        <Link href="/blog/kak-vybrat-razdelochnuyu-dosku" className="text-[#D97706] hover:underline">«Как выбрать разделочную доску»</Link> и{" "}
-        <Link href="/blog/tortsevaya-razdelochnaya-doska" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
+        <Link href="/blog/kak-vybrat-razdelochnuyu-dosku/" className="text-[#D97706] hover:underline">«Как выбрать разделочную доску»</Link> и{" "}
+        <Link href="/blog/tortsevaya-razdelochnaya-doska/" className="text-[#D97706] hover:underline">«Торцевая разделочная доска»</Link>.
       </p>
     </ArticleLayout>
   );

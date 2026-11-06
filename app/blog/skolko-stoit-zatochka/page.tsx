@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout, { ArticleMeta } from "@/components/blog/ArticleLayout";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Сколько стоит заточка ножей в Беларуси: цены 2026 | Крупки Мастер",
   description:
     "Сколько стоит заточка ножей в Беларуси в 2026 году: точки в ТЦ 3–7 BYN, частные мастера 10–25 BYN. Расценки по типам инструмента и за что вы платите.",
-  alternates: { canonical: "https://krupki-master.by/blog/skolko-stoit-zatochka" },
+  alternates: pageAlternates("/blog/skolko-stoit-zatochka/"),
 };
 
 const META: ArticleMeta = {
@@ -77,7 +78,7 @@ export default function Post() {
         и нож режет всё время остро, а не «то остро, то тупо». Плюс ручная снимает меньше
         металла: клинок живёт десятки лет. Стойкость кромки зависит и от
         поверхности, о которую вы режете: как не ошибиться с доской —{" "}
-        <Link href="/blog/kak-vybrat-razdelochnuyu-dosku" className="text-[#D97706] hover:underline">выбор разделочной доски</Link>.
+        <Link href="/blog/kak-vybrat-razdelochnuyu-dosku/" className="text-[#D97706] hover:underline">выбор разделочной доски</Link>.
       </p>
 
       <h2>Наши цены — коротко</h2>

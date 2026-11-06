@@ -22,29 +22,32 @@ export const viewport: Viewport = {
   themeColor: "#0C0C0E",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1, // Prevents zoom on iOS inputs, improves INP
+  // maximumScale не ограничиваем: запрет зума ломает доступность для тех,
+  // кому нужно увеличить текст (влияет и на мобильный опыт в Google).
+  // От автозума iOS спасает font-size: 16px у полей формы.
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Ручная заточка ножей, цепей и инструмента | krupki-master.by",
+  // Главная тема сайта — услуги, которые можно заказать (SDD 3.2). Заточка
+  // и деревянная посуда остаются отдельными разделами (/zatochka/, /doski/).
+  title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка | krupki-master.by",
   description:
-    "Профессиональная ручная заточка кухонных и охотничьих ножей, цепей бензопил, столярного и садового инструмента. Точные цены. Доставка по всей Беларуси (Минск, Гомель, Брест и др.) Белпочтой. Оплата наложенным платежом.",
+    "Заказать бытовые услуги в Крупках и 50 км: электрика, декоративная штукатурка, отделочные работы. Выезд на объект, цену называем после замера.",
   keywords: [
-    "ручная заточка ножей",
+    "заказать услуги Крупки",
+    "бытовые услуги Крупки",
+    "электрик Крупки",
+    "декоративная штукатурка Крупки",
+    "отделочные работы Крупки",
+    "ремонт по этапам Крупки",
+    "электрик Борисов",
+    "мастер Борисов Толочин Новолукомль",
+    "заточка ножей Крупки",
     "заточка цепей бензопил",
-    "заточка садового инструмента",
-    "заточка столярного инструмента",
-    "заточка топоров и секаторов",
-    "заточка ножей мясорубки",
-    "заточка ножей Минск",
-    "заточка инструмента Гомель",
-    "заточка цепей Брест",
-    "заточка ножей с доставкой по Беларуси",
-    "цена заточки ножей",
+    "деревянная посуда на заказ",
     "Крупки Мастер",
     "krupki-master.by",
-    "стоимость заточки цепей",
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
@@ -68,9 +71,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Ручная заточка ножей и цепей | Доставка по Беларуси | krupki-master.by",
+    title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка",
     description:
-      "Профессиональная заточка кухонных, охотничьих ножей, цепей бензопил и столярного инструмента. Доставка Белпочтой по всей РБ.",
+      "Заказать электрику, декоративную штукатурку и отделочные работы. Выезд: Крупки, Борисов, Толочин, Новолукомль. Цену называем после замера.",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "ru_BY",
@@ -80,14 +83,14 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og_image.png`,
         width: 1200,
         height: 630,
-        alt: "Ручная заточка ножей и инструмента Крупки Мастер",
+        alt: "Крупки Мастер — бытовые услуги с выездом на объект",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ручная заточка ножей и цепей | Доставка по Беларуси",
-    description: "Профессиональная заточка ножей, цепей и инструмента. Доставка по РБ.",
+    title: "Бытовые услуги в Крупках — электрика, штукатурка, отделка",
+    description: "Электрика, штукатурка, отделочные работы — заказать услуги мастера. Крупки и 50 км.",
     images: [`${SITE_URL}/og_image.png`],
   },
   robots: {
@@ -120,7 +123,10 @@ const jsonLd = {
       logo: `${SITE_URL}/favicon.svg`,
       image: `${SITE_URL}/og_image.png`,
       telephone: PHONE_NUMBER,
-      priceRange: "5-20 BYN",
+      // priceRange намеренно не указан: «от 4 BYN» — цена заточки ножа,
+      // а главная продаёт выездные услуги, где цена называется после замера.
+      // Низкая цифра в сниппете приводит не тех клиентов. Указать диапазон
+      // можно, когда владелец согласует прайс на услуги (T-10).
       address: {
         "@type": "PostalAddress",
         streetAddress: "д.Прошика ул.Молодежная д.1",
@@ -134,15 +140,14 @@ const jsonLd = {
         latitude: 54.4843,
         longitude: 29.1503
       },
-      // Покрытие всей РБ благодаря доставке
+      // SDD 3.3 / T-28: реальная зона выезда — Крупки + 50 км.
+      // Доставка заточки по Беларуси описывается отдельной услугой
+      // (areaServed у Service на /zatochka/*), а не зоной выезда мастера.
       areaServed: [
-        { "@type": "Country", name: "Беларусь" },
-        { "@type": "City", name: "Минск" },
-        { "@type": "City", name: "Гомель" },
-        { "@type": "City", name: "Брест" },
-        { "@type": "City", name: "Гродно" },
-        { "@type": "City", name: "Витебск" },
-        { "@type": "City", name: "Могилев" },
+        { "@type": "City", name: "Крупки" },
+        { "@type": "City", name: "Борисов" },
+        { "@type": "City", name: "Толочин" },
+        { "@type": "City", name: "Новолукомль" },
       ],
       openingHoursSpecification: [
         {
@@ -158,18 +163,49 @@ const jsonLd = {
           closes: "15:00",
         },
       ],
+      // SDD 3.3: каталог больше не «Услуги ручной заточки» — заточка стала
+      // одним из двух направлений. Цены услуг ремонта/электрики/штукатурки
+      // не выводятся, пока прайс не согласован владельцем (T-10).
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Услуги ручной заточки",
+        name: "Бытовые услуги и мастерская",
         itemListElement: [
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Ручная заточка кухонных и охотничьих ножей",
-              description: "Профессиональная ручная заточка ножей с сохранением геометрии и угла.",
+              name: "Электрические работы",
+              description: "Розетки, освещение, щиты, поиск неисправностей проводки с выездом на объект.",
+              url: `${SITE_URL}/uslugi/elektrik/`,
             },
-            price: "10",
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Декоративная штукатурка",
+              description: "Подготовка основания и нанесение декоративных покрытий.",
+              url: `${SITE_URL}/uslugi/shtukaturka/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Отделочные работы",
+              description: "Демонтаж, черновая и чистовая отделка по этапам.",
+              url: `${SITE_URL}/uslugi/remont/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Ручная заточка ножей",
+              description: "Ручная заточка ножей с сохранением геометрии и угла.",
+              url: `${SITE_URL}/zatochka/nozhi/`,
+            },
+            price: "4",
             priceCurrency: "BYN",
           },
           {
@@ -178,6 +214,7 @@ const jsonLd = {
               "@type": "Service",
               name: "Заточка цепей для бензопил",
               description: "Точная заточка режущих зубьев и ограничителей цепи бензопилы.",
+              url: `${SITE_URL}/zatochka/cepi-benzopil/`,
             },
             price: "9",
             priceCurrency: "BYN",
@@ -186,10 +223,11 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Заточка садового и столярного инструмента",
+              name: "Заточка столярного и садового инструмента",
               description: "Заточка топоров, секаторов, стамесок, ножей рубанка и мясорубки.",
+              url: `${SITE_URL}/zatochka/instrument/`,
             },
-            price: "9",
+            price: "5",
             priceCurrency: "BYN",
           },
         ],
@@ -211,10 +249,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       style={{ scrollBehavior: "smooth" }}
     >
       <head>
-        <link rel="canonical" href={SITE_URL} />
-        <link rel="alternate" hrefLang="ru" href={SITE_URL} />
-        <link rel="alternate" hrefLang="ru-BY" href={SITE_URL} />
-        <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        {/* canonical и hreflang НЕ выводятся здесь (SDD 3.1, T-01).
+            Раньше здесь стоял жёсткий <link rel="canonical" href={SITE_URL}>,
+            из-за которого на каждой странице было два canonical: этот, всегда
+            на главную, и корректный из alternates.canonical страницы.
+            Единственный источник теперь — pageAlternates() в lib/seo.ts. */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
