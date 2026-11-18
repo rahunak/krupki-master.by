@@ -7,6 +7,8 @@
  */
 
 export const BLOG_POSTS = [
+  // Новое направление — услуги с выездом (позиционирование с 06.11.2026)
+  "skolko-stoit-zamena-provodki",
   "chto-podarit-na-novyi-god",
   "uspet-zakazat-podarok-na-novyi-god",
   "doska-dlya-podachi",
@@ -33,6 +35,11 @@ export interface PublicRoute {
 const NEW_PAGE_DATE = "2026-11-06";
 const OLD_PAGE_DATE = "2026-11-04";
 
+/** Даты новых статей для sitemap: остальные статьи остаются на OLD_PAGE_DATE */
+const BLOG_POST_DATES: Record<string, string> = {
+  "skolko-stoit-zamena-provodki": "2026-11-06",
+};
+
 export const PUBLIC_ROUTES: PublicRoute[] = [
   // Главная — заказ бытовых услуг
   { path: "/", priority: 1, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
@@ -40,6 +47,7 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   // Направление 1 — бытовые услуги
   { path: "/uslugi/", priority: 0.9, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
   { path: "/uslugi/elektrik/", priority: 0.8, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
+  { path: "/uslugi/santehnik/", priority: 0.8, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
   { path: "/uslugi/shtukaturka/", priority: 0.8, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
   { path: "/uslugi/remont/", priority: 0.8, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
 
@@ -61,13 +69,13 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/doski/razdelochnye/", priority: 0.7, changeFrequency: "weekly", lastModified: OLD_PAGE_DATE },
   { path: "/doski/menazhnitsy/", priority: 0.7, changeFrequency: "weekly", lastModified: OLD_PAGE_DATE },
 
-  // Блог
-  { path: "/blog/", priority: 0.8, changeFrequency: "weekly", lastModified: OLD_PAGE_DATE },
+  // Блог (обновлён под услуги 06.11.2026)
+  { path: "/blog/", priority: 0.8, changeFrequency: "weekly", lastModified: NEW_PAGE_DATE },
   ...BLOG_POSTS.map<PublicRoute>((slug) => ({
     path: `/blog/${slug}/`,
     priority: 0.6,
     changeFrequency: "monthly",
-    lastModified: OLD_PAGE_DATE,
+    lastModified: BLOG_POST_DATES[slug] ?? OLD_PAGE_DATE,
   })),
 ];
 

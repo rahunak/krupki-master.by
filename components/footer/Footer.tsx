@@ -10,6 +10,7 @@ import { PHONE_NUMBER } from "@/data/contacts";
 const SERVICES_LINKS = [
   { href: "/uslugi/", label: "Все услуги" },
   { href: "/uslugi/elektrik/", label: "Электрика" },
+  { href: "/uslugi/santehnik/", label: "Сантехника" },
   { href: "/uslugi/shtukaturka/", label: "Декоративная штукатурка" },
   { href: "/uslugi/remont/", label: "Отделочные работы" },
   { href: "/ceny/", label: "Цены" },
@@ -79,9 +80,9 @@ export default function Footer() {
             ))}
           </nav>
 
-          <nav aria-label="Мастерская" className="flex flex-col gap-3">
+          <nav aria-label="Заточка" className="flex flex-col gap-3">
             <p className="text-[#2A2A2E] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 select-none">
-              Мастерская
+              Заточка
             </p>
             {WORKSHOP_LINKS.map((n) => (
               <Link

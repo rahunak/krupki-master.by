@@ -7,7 +7,9 @@ import { pageAlternates } from "@/lib/seo";
 const service = SERVICES.elektrik;
 
 export const metadata: Metadata = {
-  title: `${service.title} | krupki-master.by`,
+  // Без домена в title: с ним заголовок выходил за 60 символов и обрезался
+  // в выдаче вместе с «выезд мастера».
+  title: service.title,
   description: service.description,
   alternates: pageAlternates(service.path),
   openGraph: {

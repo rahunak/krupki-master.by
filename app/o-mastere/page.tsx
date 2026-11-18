@@ -199,7 +199,6 @@ export default function OMasterePage() {
           <ServiceForm
             serviceOptions={[
               ...SERVICE_LIST.map((s) => s.serviceName),
-              "Сантехника",
               "Заточка",
               "Другое",
             ]}

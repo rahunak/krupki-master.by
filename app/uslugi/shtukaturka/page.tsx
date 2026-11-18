@@ -7,7 +7,7 @@ import { pageAlternates } from "@/lib/seo";
 const service = SERVICES.shtukaturka;
 
 export const metadata: Metadata = {
-  title: `${service.title} | krupki-master.by`,
+  title: service.title,
   description: service.description,
   alternates: pageAlternates(service.path),
   openGraph: {

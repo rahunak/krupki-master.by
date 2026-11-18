@@ -125,22 +125,25 @@ export default function ServicePageLayout({ service }: { service: Service }) {
           </section>
 
           {/* Иллюстрация услуги. Это не портфолио: подпись прямо говорит,
-              что фото показывает вид работ, а не выполненный объект (SDD 4.3). */}
-          <figure className="mb-6">
-            <div className="overflow-hidden rounded-[3px] border border-white/[0.07]">
-              <Image
-                src={service.image}
-                alt={service.imageAlt}
-                width={1600}
-                height={1000}
-                sizes="(max-width: 1152px) 100vw, 1104px"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <figcaption className="text-[#3D3D42] text-xs mt-2">
-              Иллюстрация вида работ, а не пример выполненного объекта.
-            </figcaption>
-          </figure>
+              что фото показывает вид работ, а не выполненный объект (SDD 4.3).
+              Если честного фото под услугу нет — блок не рендерится вообще. */}
+          {service.image && (
+            <figure className="mb-6">
+              <div className="overflow-hidden rounded-[3px] border border-white/[0.07]">
+                <Image
+                  src={service.image}
+                  alt={service.imageAlt ?? service.serviceName}
+                  width={1600}
+                  height={1000}
+                  sizes="(max-width: 1152px) 100vw, 1104px"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              <figcaption className="text-[#3D3D42] text-xs mt-2">
+                Иллюстрация вида работ, а не пример выполненного объекта.
+              </figcaption>
+            </figure>
+          )}
 
           {/* Что делаем */}
           <section aria-labelledby="what-heading" className="py-10">
@@ -231,7 +234,6 @@ export default function ServicePageLayout({ service }: { service: Service }) {
             serviceOptions={[
               service.serviceName,
               ...otherServices.map((s) => s.serviceName),
-              "Сантехника",
               "Другое",
             ]}
             defaultService={service.serviceName}

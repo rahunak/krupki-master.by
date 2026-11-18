@@ -192,7 +192,6 @@ export default function KontaktyPage() {
           <ServiceForm
             serviceOptions={[
               ...SERVICE_LIST.map((s) => s.serviceName),
-              "Сантехника",
               "Заточка",
               "Другое",
             ]}

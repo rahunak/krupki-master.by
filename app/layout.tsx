@@ -183,6 +183,15 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
+              name: "Сантехнические работы",
+              description: "Смесители, унитазы, подключение техники, разводка труб и поиск протечек с выездом на объект.",
+              url: `${SITE_URL}/uslugi/santehnik/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
               name: "Декоративная штукатурка",
               description: "Подготовка основания и нанесение декоративных покрытий.",
               url: `${SITE_URL}/uslugi/shtukaturka/`,

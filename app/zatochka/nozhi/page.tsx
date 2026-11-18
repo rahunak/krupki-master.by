@@ -7,7 +7,7 @@ import { pageAlternates } from "@/lib/seo";
 const page = ZATOCHKA_PAGES.nozhi;
 
 export const metadata: Metadata = {
-  title: `${page.title} | krupki-master.by`,
+  title: page.title,
   description: page.description,
   alternates: pageAlternates(page.path),
   openGraph: {

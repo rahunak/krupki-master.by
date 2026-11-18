@@ -101,11 +101,7 @@ export default function RabotyPage() {
           <ServiceZone />
 
           <ServiceForm
-            serviceOptions={[
-              ...SERVICE_LIST.map((s) => s.serviceName),
-              "Сантехника",
-              "Другое",
-            ]}
+            serviceOptions={[...SERVICE_LIST.map((s) => s.serviceName), "Другое"]}
             cities={SERVICE_CITIES}
             heading="Обсудить объект"
             note="Оставьте телефон — мастер свяжется, уточнит задачу и скажет, нужен ли выезд."

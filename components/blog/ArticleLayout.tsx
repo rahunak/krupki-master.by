@@ -1,4 +1,3 @@
-import type { MetadataRoute } from "next";
 import Link from "next/link";
 import { ArrowLeft, Phone, MessageCircle } from "lucide-react";
 import Header from "@/components/header/Header";
@@ -19,6 +18,9 @@ export interface ArticleMeta {
   description: string;
   publishedAt: string; // ISO
   modifiedAt?: string; // ISO
+  /** CTA в конце статьи. Не задан — используется дефолт про заточку
+   *  (старые посты); статьи про услуги передают свой заголовок и текст. */
+  cta?: { heading: string; text: string };
 }
 
 interface ArticleLayoutProps {
@@ -65,7 +67,8 @@ export function ArticleCTA({ heading, text }: { heading?: string; text: string }
 }
 
 export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
-  const url = `${SITE_URL}/blog/${meta.slug}`;
+  // Трейлинг-слэш — как в canonical (lib/seo): единый формат URL на сайте.
+  const url = `${SITE_URL}/blog/${meta.slug}/`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -85,7 +88,7 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Главная", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Блог", item: `${SITE_URL}/blog` },
+          { "@type": "ListItem", position: 2, name: "Блог", item: `${SITE_URL}/blog/` },
           { "@type": "ListItem", position: 3, name: meta.h1, item: url },
         ],
       },
@@ -119,7 +122,13 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
 
           <Prose>{children}</Prose>
 
-          <ArticleCTA text="Работаем по всей Беларуси: отправьте инструмент Белпочтой или Европочтой — заточим за 1–3 дня и вернём наложенным платежом." />
+          <ArticleCTA
+            heading={meta.cta?.heading}
+            text={
+              meta.cta?.text ??
+              "Работаем по всей Беларуси: отправьте инструмент Белпочтой или Европочтой — заточим за 1–3 дня и вернём наложенным платежом."
+            }
+          />
         </article>
       </main>
 

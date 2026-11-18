@@ -140,6 +140,7 @@ export const MARKET_PRICE_GROUPS: MarketPriceGroup[] = [
   {
     slug: "santehnik",
     title: "Сантехника",
+    path: "/uslugi/santehnik/",
     items: [
       {
         name: "Установка или замена смесителя",

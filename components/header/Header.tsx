@@ -17,7 +17,8 @@ import { PHONE_DISPLAY, PHONE_NUMBER } from "@/data/contacts";
 const NAV_LINKS = [
   { href: "/uslugi/", label: "Услуги" },
   { href: "/ceny/", label: "Цены" },
-  { href: "/zatochka/", label: "Мастерская" },
+  { href: "/zatochka/", label: "Заточка" },
+  { href: "/doski/", label: "Изделия из дерева" },
 ];
 
 export default function Header() {
