@@ -166,6 +166,12 @@ export const MARKET_PRICE_GROUPS: MarketPriceGroup[] = [
         averageFrom: 35,
         range: "19–60 BYN",
       },
+      {
+        name: "Разводка труб",
+        unit: "за метр",
+        averageFrom: 12,
+        range: "8–20 BYN/м",
+      },
     ],
   },
   {

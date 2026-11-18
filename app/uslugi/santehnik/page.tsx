@@ -6,8 +6,6 @@ import { pageAlternates } from "@/lib/seo";
 
 const service = SERVICES.santehnik;
 
-// У услуги пока нет честной иллюстрации: OG-картинка падает на общую,
-// чтобы не выдавать фото другой работы за сантехнику.
 const ogImage = service.image ? `${SITE_URL}${service.image}` : `${SITE_URL}/og_image.png`;
 const ogAlt = service.imageAlt ?? "Сантехнические работы в Крупках и районе";
 

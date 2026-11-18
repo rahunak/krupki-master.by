@@ -38,6 +38,8 @@ export default function PriceBlock({
                 <td className="py-3 px-4 text-right font-mono whitespace-nowrap">
                   {p.priceFrom === null ? (
                     <span className="text-[#7A8494] font-sans">по запросу</span>
+                  ) : p.priceFrom === 0 ? (
+                    <span className="text-[#6FB3A0] font-sans">бесплатно</span>
                   ) : (
                     <span className="text-[#F59E0B] font-semibold">от {p.priceFrom} BYN</span>
                   )}

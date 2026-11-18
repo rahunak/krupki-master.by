@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[#0C0C0E]">
         <Image
           src="/hero-uslugi.webp"
-          alt="Инструмент для электромонтажа и отделочных работ"
+          alt="Комната в процессе ремонта с инструментами и материалами"
           fill
           priority
           className="object-cover opacity-[0.14] mix-blend-luminosity"
@@ -43,7 +43,7 @@ export default function Hero() {
             id="hero-heading"
             className="text-[2.4rem] md:text-5xl lg:text-[3.3rem] font-extrabold text-[#EDE8E0] leading-[1.07] tracking-[-0.02em] mb-6"
           >
-            Электрика, штукатурка и отделка в Крупках — цена до начала работ
+            Электрика, сантехника и отделка в Крупках — цена до начала работ
           </h1>
           <p className="text-[17px] md:text-lg text-[#6E7886] leading-relaxed mb-10 max-w-xl">
             Мастер приедет на объект, оценит объём и назовёт стоимость.
