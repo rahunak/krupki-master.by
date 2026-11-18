@@ -159,7 +159,6 @@ export default function KontaktyPage() {
                   <br />
                   Вс: выходной
                 </p>
-                <p className="text-[#7A8494] text-sm mt-3">УНП: KA7633473</p>
               </div>
             </div>
           </section>

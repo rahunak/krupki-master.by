@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Clock, Phone, FileText } from "lucide-react";
+import { MapPin, Clock, Phone } from "lucide-react";
 import Logo from "../header/Logo";
 import { PHONE_NUMBER } from "@/data/contacts";
 
@@ -58,10 +58,6 @@ export default function Footer() {
                 <Phone size={13} className="text-[#D97706] shrink-0" aria-hidden="true" />
                 +375 (25) 781-09-98
               </a>
-              <p className="flex items-center gap-2.5 text-[13px] text-[#6E7886]">
-                <FileText size={13} className="text-[#D97706] shrink-0" aria-hidden="true" />
-                УНП:&nbsp;KA7633473
-              </p>
             </address>
           </div>
 
@@ -124,7 +120,6 @@ export default function Footer() {
           <p className="text-[#2A2A2E] text-xs">
             © 2026 Krupki Master · Бытовые услуги и мастерская · Крупки + 50 км
           </p>
-          <p className="text-[#2A2A2E] text-xs">УНП:&nbsp;KA7633473</p>
         </div>
       </div>
     </footer>
